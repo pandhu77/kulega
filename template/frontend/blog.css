@@ -1,0 +1,116 @@
+@media (min-width:786px) {
+  .title-al-blog{
+  	font-family: "Manus";
+  	color: #b2203d;
+  	text-align: center;
+  	margin-top: -10px;
+  	margin-bottom: 50px;
+  }
+}
+@media (max-width:786px) {
+
+  .title-al-blog{
+  	font-family: "Manus";
+  	color: #b2203d;
+  	text-align: center;
+  	margin-top: 60px;
+  	margin-bottom: 40px;
+  }
+}
+.read-more{
+	border: 1px solid #535353;
+	padding: 8px 15px;
+	background-color: transparent;
+	text-decoration: none;
+	color: #000000;
+	margin-top: 25px;
+	text-align: center;
+}
+.read-more:hover{
+	text-decoration: none;
+	background-color: #333;
+	color: white;
+	transition: 0.5s;
+}
+.card {
+	/* Add shadows to create the "card" effect */
+	/*height: 400px;*/
+	transition: 0.3s;
+	position: relative;
+	display: inline-block;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.isi-card {
+	padding: 2px 7px;
+	position: relative;
+}
+.title-card{
+  text-align: center;
+  font-weight: 600;
+}
+.date{
+	position: absolute;
+	background-color: rgba(0, 0, 0, 1);
+	color: white;
+	padding: 10px;
+	top: 10px;
+	right: 25px;
+}
+.hovereffect-blog{
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat center;
+   /*width: 250px;*/
+   height: 250px;
+   width: 100%;
+}
+
+.bloglist{
+  padding: 0px;
+  margin-bottom: 30px;
+}
+.isi-card .detail{
+  padding-left: 1px;
+  padding-right: 1px;
+  margin-top: 5px;
+  text-align: center;
+}
+.isi-card .detail a{
+  color: #b2203d;
+}
+.isi-card .detail a:hover{
+  color: #b2203d;
+}
+.isi-card .detail-isi{
+  padding-left: 1px;
+  padding-right: 1px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+.category-list h3 {
+    line-height: 2;
+    margin-top: 0;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #b2203d;
+    font-size: 15px;
+    color: #333;
+}
+.category-list h3 a {
+  line-height: 17px;
+  padding: 7px 12px 8px 12px;
+  background-color: #222222;
+  color: #fff;
+  background-color: #b2203d;
+}
+.blog-items {
+    display:none;
+}

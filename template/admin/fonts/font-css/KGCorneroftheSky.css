@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'KGCorneroftheSky';
+    src: url('../font/KGCorneroftheSky.eot');
+    src: url('../font/KGCorneroftheSky.eot') format('embedded-opentype'),
+         url('../font/KGCorneroftheSky.woff2') format('woff2'),
+         url('../font/KGCorneroftheSky.woff') format('woff'),
+         url('../font/KGCorneroftheSky.ttf') format('truetype'),
+         url('../font/KGCorneroftheSky.svg#KGCorneroftheSky') format('svg');
+}

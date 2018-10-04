@@ -1,0 +1,55 @@
+.section-title{
+  padding-top: 25px;
+  padding-bottom: 15px;
+}
+
+.section-title h3{
+  font-weight: bold;
+}
+.section-title p{
+  font-style: italic;
+  color: #9f9f9f;
+}
+
+.thumbnail{
+  border: 0px;
+}
+
+.btn-black{
+  background: #000;
+  color: #fff;
+}
+
+.btn-default{
+  border-radius: 17px;
+  color: #fff;
+  border-color: #d19e9a;
+  background-color: #d19e9a;
+}
+
+.btn-default:hover,
+.btn-default.active.focus,
+.btn-default.active:focus,
+.btn-default.active:hover,
+.btn-default:active.focus,
+.btn-default:active:focus,
+.btn-default:active:hover{
+    border-radius: 17px;
+    color: #fff;
+    border-color: #d19e9a;
+    background-color: #d19e9a;
+}
+
+.btn-black:hover,
+.btn-black.active.focus,
+.btn-black.active:focus,
+.btn-black.active:hover,
+.btn-black:active.focus,
+.btn-black:active:focus,
+.btn-black:active:hover,
+.open>.dropdown-toggle.btn-black.focus,
+.open>.dropdown-toggle.btn-black:focus,
+.open>.dropdown-toggle.btn-black:hover{
+  background: #000000 !important;
+  color: #fff;
+}

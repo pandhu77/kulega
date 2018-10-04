@@ -1,0 +1,25 @@
+
+    /*Product Grid*/
+    .product-grid{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .product-grid li{
+        text-decoration: none;
+        float: left;
+          display: inline-block;
+    }
+
+    .product-grid li:hover{
+        border: 1px solid #ccc;
+    }
+
+    .product-grid li:hover a{
+        color: #666;
+        text-decoration: none;
+    }
+    .grid-img{        
+        width: 100%;
+    }

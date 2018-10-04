@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'ufonts_com_couriernormal';
+    src: url('fonts/ufonts_com_couriernormal.eot');
+    src: url('fonts/ufonts_com_couriernormal.eot') format('embedded-opentype'),
+         url('fonts/ufonts_com_couriernormal.woff2') format('woff2'),
+         url('fonts/ufonts_com_couriernormal.woff') format('woff'),
+         url('fonts/ufonts_com_couriernormal.ttf') format('truetype'),
+         url('fonts/ufonts_com_couriernormal.svg#ufonts_com_couriernormal') format('svg');
+}

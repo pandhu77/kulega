@@ -1,0 +1,100 @@
+.read-more{
+  border: 1px solid #535353;
+  padding: 8px 15px;
+  background-color: transparent;
+  text-decoration: none;
+  color: #000000;
+  margin-top: 25px;
+  text-align: center;
+}
+.read-more:hover{
+  text-decoration: none;
+  background-color: #333;
+  color: white;
+  transition: 0.5s;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  /*height: 400px;*/
+  transition: 0.3s;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.isi-card {
+  padding: 2px 7px;
+  position: relative;
+}
+.title-card{
+  /*text-align: center;*/
+  font-weight: 600;
+}
+.date{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 1);
+  color: white;
+  padding: 10px;
+  top: 10px;
+  right: 25px;
+}
+.hovereffect-blog{
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat center;
+   /*width: 250px;*/
+   height: 200px;
+   width: 100%;
+   border-radius: 20px;
+}
+
+.bloglist{
+  padding: 0px;
+  margin-bottom: 30px;
+}
+.isi-card .detail-left{
+  padding-left: 1px;
+  padding-right: 1px;
+}
+@media (min-width:768px){
+  .isi-card .detail-right{
+    padding-left: 1px;
+    padding-right: 1px;
+    text-align: right;
+  }
+}
+@media (max-width:768px){
+  .isi-card .detail-right{
+    padding-left: 1px;
+    padding-right: 1px;
+    text-align: left;
+  }
+}
+.isi-card .detail-right a{
+  color: #b2203d;
+}
+.isi-card .detail-right a:hover{
+  color: #b2203d;
+}
+.isi-card .detail-right span{
+  padding-right: 10px;
+
+}
+.isi-card .detail-isi{
+  padding-left: 1px;
+  padding-right: 1px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.blog-items{
+  display: none;
+}

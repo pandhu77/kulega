@@ -1,0 +1,5 @@
+
+nav:not(.mm-menu)
+{
+	display: none;
+}

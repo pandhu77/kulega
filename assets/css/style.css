@@ -1,0 +1,248 @@
+@font-face {font-family: 'PT Sans';             src: url({{asset('assets/fonts/PTSans.ttf')}});        }
+@font-face {font-family: 'PT Sans Bold';        src: url({{asset('assets/fonts/PTSansBold.ttf')}});        }
+@font-face {font-family: 'PT Sans Italic';      src: url({{asset('assets/fonts/PTSansItalic.ttf')}});        }
+@font-face {font-family: 'PT Sans Caption Bold';src: url({{asset('assets/fonts/PTSansCaptionBold.ttf')}});        }
+
+body{
+      font-family: 'PT Sans';
+}
+hr{
+  margin-top: 10px;
+}
+.input-group-addon {
+  border-radius: 0;
+  background: #0c72a6;
+  color: #fff;
+  border: 1px #0c72a6;
+  /*width: 40px !important;*/
+}
+
+  .form-control {
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0px !important;
+  }
+  .form-control:focus{
+    border-color: #ddd;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+
+
+.no-padding{
+  padding: 0px !important;
+}
+.top-mar{
+    margin-top: 30px !important;
+}
+
+.head-navi{
+  position:absolute;
+  z-index:10;
+  padding-top:10px;
+  padding-bottom: 7px;
+  background: rgba(36, 132, 189, 0.7);
+  width: 100%;
+}
+.head-navi div{
+  text-align:center;
+}
+.head-navi a{
+    font-family: 'PT Sans Italic';
+    color: white;
+}
+ul.nav a:hover {
+    background-color: transparent !important;
+    color:lightgrey;
+}
+.nav-active{
+    color:lightgrey;
+}
+.nav-button{
+  padding:8px 10px 8px 10px;
+  margin:5px 5px 5px 5px;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: white;
+  color:white;
+  display:none;
+}
+@media (max-width: 768px){
+  .nav-button{
+    display:inline;
+  }
+  .nav-logo{
+    text-align: left !important;
+  }
+  .nav-logo .logo{
+    width: 170px;
+  }
+  .nav-bar{
+    display:none;
+  }
+  .nav-login{
+    display:none;
+  }
+}
+
+@media (min-width: 768px){
+  .nav-logo .logo{
+    width: 190px;
+  }
+}
+.search div{
+    font-family: 'PT Sans';
+}
+
+.caritrip input{
+  border-radius: 0px;
+}
+.caritrip select{
+  border-radius: 0px;
+}
+.caritrip button{
+  border-radius: 0px;
+}
+
+.promotrip a{
+    font-family: 'PT Sans Caption Bold';
+    font-size: 20px;
+}
+.promotrip p{
+    font-size: 10px;
+}
+.blue{
+  color:#0c72a6;
+  font-size: 40px;
+  font-family: 'PT Sans';
+}
+.gray{
+  color:gainsboro;
+  font-size: 40px;
+}
+.item-desc3 div{
+  padding:15px;
+}
+.item-desc3{
+  background-color:whitesmoke;
+  border-radius: 0 0 7px 7px;
+}
+
+.tophotel{
+    font-family: 'PT Sans';
+    font-size: 20px;
+}
+.item-desc4 div{
+  padding:15px;
+}
+.item-desc4{
+  background-color:whitesmoke;
+}
+.image-caption-to{
+  color:white;
+  position:absolute;
+  bottom:0;
+  padding:0px 0px 10px 10px ;
+}
+
+.image-caption-to h1{
+  font-family: 'PT Sans Caption Bold';
+  font-size: 20px;
+}
+.image-caption-to h2{
+  font-family: 'PT Sans Caption';
+  font-size: 20px;
+}
+
+.image-caption-promo{
+  color:black;
+  position:absolute;
+  margin:70px 0px 0px 0px ;
+
+  padding:10px 10px 10px 80px ;
+}
+.image-caption-promo h1{
+  font-family: 'PT Sans Caption Bold';
+  font-size: 60px;
+  color:white;
+}
+.image-caption-promo h2{
+  font-family: 'PT Sans italic';
+  font-size: 50px;
+  color:#0c72a6;
+  margin-top: 10px;
+}
+.image-caption-promo p{
+  font-family: 'PT Sans italic';
+  font-size: 20px;
+}
+.image-caption-promo button{
+  font-family: 'PT Sans Caption Bold';
+  border-radius: 0px;
+}
+
+@media screen and (max-width: 800px) and (max-height: 900px) {
+  .image-caption-promo{
+    color:black;
+    position:absolute;
+    margin:70px 0px 0px 0px ;
+
+    padding:10px 10px 10px 30px ;
+  }
+  .image-caption-promo h1{
+    font-size: 50px;
+    color:white;
+  }
+  .image-caption-promo h2{
+    font-size: 35px;
+    color:#0c72a6;
+    margin-top: 10px;
+  }
+  .image-caption-promo p{
+    font-size: 15px;
+  }
+}
+
+.image-caption-pd{
+  color:white;
+  position:absolute;
+  bottom:0;
+  padding:0px 0px 10px 10px ;
+}
+
+.image-caption-pd h1{
+  margin:0px;
+  color:yellow;
+}
+
+.foot ul{
+  padding:0px;
+  list-style-type:none;
+}
+
+.info {
+  padding-left:0px;
+  text-align:left;
+}
+@media screen and (max-width: 800px) and (max-height: 900px) {
+  .info p{
+    font-size: 20px;
+  }
+}
+
+.foot span{
+  font-size: 30px;
+  border-color: black;
+  width: 10px;
+}
+.foot a{
+  color: white;
+}
+.titledesc{
+  font-size: 12px;
+}
+
+.item{
+  padding-bottom: 10px;
+}

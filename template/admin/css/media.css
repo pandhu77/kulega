@@ -1,0 +1,24 @@
+@media (max-width:768px){ /* (<768px) Extra small devices ( xs ) => Phones */
+ .namaclass{
+  background: red;
+ }
+}
+@media (min-width:768px) { /* (≥769px) Small devices ( sm )=> Tablets  */
+
+ .namaclass{
+  background: blue;
+ }
+}
+@media (min-width:992px){  /* (≥992px) Medium devices ( md ) =>  Medium Desktops */
+
+ .namaclass{
+  background: black;
+ }
+
+}
+@media (min-width:1200px){ /* (≥1200px)Large devices ( lg )=> Large Desktops */
+ .namaclass{
+  background: yellow;
+ }
+
+}

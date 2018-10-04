@@ -1,0 +1,9 @@
+[11-Dec-2017 03:40:50 Europe/Rome] PHP Warning:  finfo_file(): Empty filename or path in /home/u3283534/public_html/iama/assets/filemanager/include/mime_type_lib.php on line 247
+[11-Dec-2017 03:40:50 Europe/Rome] PHP Warning:  mime_content_type(): Empty filename or path in /home/u3283534/public_html/iama/assets/filemanager/include/mime_type_lib.php on line 262
+[11-Dec-2017 03:40:50 Europe/Rome] PHP Warning:  chmod(): No such file or directory in /home/u3283534/public_html/iama/assets/filemanager/upload.php on line 106
+[11-Dec-2017 04:23:00 Europe/Rome] PHP Warning:  finfo_file(): Empty filename or path in /home/u3283534/public_html/iama/assets/filemanager/include/mime_type_lib.php on line 247
+[11-Dec-2017 04:23:00 Europe/Rome] PHP Warning:  mime_content_type(): Empty filename or path in /home/u3283534/public_html/iama/assets/filemanager/include/mime_type_lib.php on line 262
+[11-Dec-2017 04:23:00 Europe/Rome] PHP Warning:  chmod(): No such file or directory in /home/u3283534/public_html/iama/assets/filemanager/upload.php on line 106
+[11-Dec-2017 04:23:00 Europe/Rome] PHP Warning:  finfo_file(): Empty filename or path in /home/u3283534/public_html/iama/assets/filemanager/include/mime_type_lib.php on line 247
+[11-Dec-2017 04:23:00 Europe/Rome] PHP Warning:  mime_content_type(): Empty filename or path in /home/u3283534/public_html/iama/assets/filemanager/include/mime_type_lib.php on line 262
+[11-Dec-2017 04:23:00 Europe/Rome] PHP Warning:  chmod(): No such file or directory in /home/u3283534/public_html/iama/assets/filemanager/upload.php on line 106

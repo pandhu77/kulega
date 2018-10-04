@@ -1,0 +1,23 @@
+Url DomainL:
+
+1. ENV.
+2. HELPER
+3. CHECKOUT
+
+
+{
+    "protocol": "ftp",
+    "host": "ftp.chronosh.com",
+    "port": 21,
+    "user": "sentra@chronosh.com",
+    "pass": "elvendi1",
+    "promptForPass": false,
+    "remote": "/",
+    "secure": false,
+    "secureOptions": null,
+    "connTimeout": 10000,
+    "pasvTimeout": 10000,
+    "keepalive": 10000,
+    "watch": [],
+    "watchTimeout": 500
+}

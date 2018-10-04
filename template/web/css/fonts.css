@@ -1,0 +1,19 @@
+@font-face {
+    font-family: texgyreadventor-regular;
+    src: url('../fonts/tex-gyre-adventor/texgyreadventor-regular.otf');
+}
+
+@font-face {
+    font-family: texgyreadventor-bold;
+    src: url('../fonts/tex-gyre-adventor/texgyreadventor-bold.otf');
+}
+
+@font-face {
+    font-family: texgyreadventor-bolditalic;
+    src: url('../fonts/tex-gyre-adventor/texgyreadventor-bolditalic.otf');
+}
+
+@font-face {
+    font-family: texgyreadventor-italic;
+    src: url('../fonts/tex-gyre-adventor/texgyreadventor-italic.otf');
+}

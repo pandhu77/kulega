@@ -1,0 +1,206 @@
+@media(min-width:768px) {
+  .col-body{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #666;
+    font-size: 18px;
+
+  }
+}
+
+  @media(max-width:768px) {
+  .main-content {
+      min-height: 20px;
+      padding-top: 30px;
+  }
+  .col-body{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: #666;
+    font-size: 18px;
+
+  }
+}
+
+
+.brand-title {
+    display: block;
+    font-size: 30px;
+    font-family: "Manus";
+    color: #b2203d;
+    text-align: center;
+    margin-bottom: 13px;
+    /*font-weight: 700;*/
+    margin-top: 15px;
+    line-height: 16px;
+}
+.col-profile_img{
+  padding-top: 40px;
+}
+.list-outer-title label {
+    margin-top: 0;
+    /*border-bottom: 1px dotted #666;*/
+    padding-bottom: 25px;
+    background-color:#fff;
+    border-radius: 0 3px 9px 0 rgba(0, 0, 0, 0.1);
+}
+
+.service-item:hover{
+  background-color:#fff;
+  box-shadow:  0 3px 9px 0 rgba(0, 0, 0, 0.1);
+}
+.service-item{
+  display: inline-block;
+}
+.service-item {
+    /*display: none;*/
+    background-color: #f7f7f7;
+    padding: 0px 30px 30px;
+    border-radius: 2px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    margin-right: 5px;
+    margin-left: 5px;
+
+
+    margin-bottom: 10px;
+}
+@media(min-width: 768px){
+  .service-item {
+    width: 32%;
+
+  }
+}
+.btn-view-more{
+    color: #666;
+    border-color: #01A2C5;
+    border-radius: 0px;
+    margin: 15px;
+}
+
+
+.btn-view-more:hover,.btn-view-more:focus,.btn-view-more:active:focus,.btn-view-more:active:hover,.btn-view-more .active,.btn-view-more:active{
+    color: #b2203d;
+}
+.service-item {
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat center;
+   height: 200px;
+
+}
+.service-item {
+    display:none;
+
+}
+.more-brand{
+  margin-top: 60px;
+}
+
+.load-more {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  width: 40px; height: 40px;
+  top: 50%; left: 50%;
+  margin: -20px 0 0 -20px;
+}
+.load-more:before,
+.load-more:after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 30px; height: 30px;
+  left: 50%; top: 50%;
+  margin-top: -15px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: #b2203d;
+  border-right-color: #b2203d;
+  border-radius: 0 0 5px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: all .4s ease-in-out;
+}
+.load-more.active:before {
+  border-radius: 50%;
+  animation:
+  .8s rotate .4s linear forwards infinite;
+}
+.load-more.active:after {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  animation:
+  .8s rotate2 .4s linear forwards infinite;
+}
+@keyframes rotate {
+  to {
+    transform: translate(-50%, -50%) rotate(405deg);
+  }
+}
+@keyframes rotate2 {
+  to {
+    transform: translate(-50%, -50%) rotate(-315deg);
+  }
+}
+.load-more.disabled:before,
+.load-more.disabled:after {
+  margin-top: 0;
+  transform: translate(-50%, -50%) rotate(135deg) rotateY(180deg);
+}
+
+
+
+.load-top {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  width: 40px; height: 40px;
+  top: 50%; left: 50%;
+  margin: -20px 0 0 -20px;
+}
+.load-top:before,
+.load-top:after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 30px; height: 30px;
+  left: 50%; top: 50%;
+  margin-top: -15px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: #b2203d;
+  border-right-color: #b2203d;
+  border-radius: 0 0 5px 0;
+  transform: translate(-50%, -50%) rotate(225deg);
+  transition: all .4s ease-in-out;
+}
+.load-top.active:before {
+  border-radius: 50%;
+  animation:
+  .8s rotate .4s linear forwards infinite;
+}
+.load-top.active:after {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  animation:
+  .8s rotate2 .4s linear forwards infinite;
+}
+@keyframes rotate {
+  to {
+    transform: translate(-50%, -50%) rotate(405deg);
+  }
+}
+@keyframes rotate2 {
+  to {
+    transform: translate(-50%, -50%) rotate(-315deg);
+  }
+}
+.load-top.disabled:before,
+.load-top.disabled:after {
+  margin-top: 0;
+  transform: translate(-50%, -50%) rotate(135deg) rotateY(180deg);
+}
