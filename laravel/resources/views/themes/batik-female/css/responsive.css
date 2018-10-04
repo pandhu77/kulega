@@ -1626,7 +1626,7 @@
 
 	.container,
 	#header.full-header .container,
-	.container-fullwidth { width: 310px !important; }
+	.container-fullwidth { width: 400px !important; padding: 0px !important; margin: 0 auto; }
 
 	.container.vertical-middle { width: 100% !important; }
 

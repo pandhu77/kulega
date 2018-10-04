@@ -180,7 +180,7 @@
               </a>
 
               <?php $socialmedia = DB::table('cms_socialmedia')->where('enable',1)->get(); ?>
-              <ul class="social-media" style="text-align: right;">
+              <ul class="social-media" style="text-align: center;">
                   @foreach($socialmedia as $sosmed)
                       <li style="border: 2px solid #f6f6f6;">
                         <a href="{{ $sosmed->url }}"><i class="{{ $sosmed->icon }}"></i>
