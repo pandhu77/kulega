@@ -1,11 +1,11 @@
 @extends('web.master')
-@section('title','Sonia')
+@section('title','KULEGA')
 @section('content')
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('template/web/plugins/OwlCarousel2-2.2.1/dist/assets/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('template/web/plugins/OwlCarousel2-2.2.1/dist/assets/owl.theme.default.min.css') }}">
-
+<link rel="stylesheet" href="{{ asset('laravel/resources/views/themes/batik-female/css/kulega.css') }}">
 <link rel="stylesheet" href="{{ asset('template/web/plugins/kartik-v-bootstrap-star-rating-ca43ee3/css/star-rating.css') }}">
 <!-- <link rel="stylesheet" href="{{ asset('template/web/plugins/kartik-v-bootstrap-star-rating-ca43ee3/themes/krajee-svg/theme.css') }}"> -->
 
@@ -43,7 +43,7 @@
     }
 
     .product-title h4 a{
-        color:#1ABC9C;
+        color:#D19E9A;
     }
 
     .product-title h5 a{
@@ -206,29 +206,62 @@
   </div>
 </section><!--./ END MAIN SLIDE SHOW -->
 
-<!-- BEGIN CATEGORY -->
-<div class="container clear-bottommargin clearfix" style="margin-top: 50px;">
-  <div class="row">
+<section id="main-products" class="mainslick" style="padding-top:0px;padding-bottom: 0px;background-color: #f5f5f5">
+  <div class="container">
+    <div class="section-title text-center">
+      <div class="col-md-12">
+        <h3 style="margin: 0px;font-family:'Noto Sans';">Trending Now</h3>
+        <p class="text-center" style="color: #777;font-size: 16px;font-family:'Noto Sans'; margin: 0px;">View the fundraisers that are most active right now</p>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    <section class="regular slider">
+      @foreach($campaign as $campaign)
+      <div class="col-md-4 kulega" style="padding: 0px !important; margin-bottom: 20px; background-color: #fff;" onclick="window.location.href='{{ url('/campaign/'.$campaign->kateg_url.'/'.$campaign->url) }}'">
+        <div class="widget-container home_trending" style="background-color: #fff;">
+          <div class="image">
+            <img src="{{ url($campaign->image) }}" class="img-responsive">
+          </div>
+          <p class="small-badge">
+            <span id="campaignCause" class="label label-large label-color arrowed-right cat-tag cat-personal">{{ $campaign->kateg_name }}</span>
+          </p>
+          <div class="widget-details">
+            <div class="widget-mid">
+              <h5 id="campaignTitle"><a href="{{ url('/campaign/'.$campaign->kateg_url.'/'.$campaign->url) }}" tabindex="0">{{ $campaign->name }}</a></h5>
 
-    @foreach($category as $cate)
-    <div class="col-md-4 col-sm-6 bottommargin">
-      <div class="ipost clearfix">
-        <div class="entry-image" style="margin-bottom:12px;">
-          <a href="{{ url('/products/') }}?category={{ $cate->kateg_url }}"><img class="image_fade" src="{{ url($cate->kateg_image) }}" alt="{{ $cate->kateg_name }}"></a>
-        </div>
-        <div class="entry-title">
-          <h3><a href="{{ url('/products/') }}?category={{ $cate->kateg_url }}">{{ $cate->kateg_name }}</a></h3>
+              <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>
+
+              <div class="widget-footter">
+                  <div class="amt-raised clearfix">
+                      <span class="pull-left"><span style="font-size: 18px;font-weight: bold;">Rp</span> <span class="campaignAmountRaised"><?php echo number_format($campaign->target, 2); ?></span></span>
+                  </div><!-- .amt-raised -->
+
+                  <div class="progress ">
+                      <div id="campaignProgressRaised" class="progress-bar" style="width:<?php echo round((0/$campaign->target)*100); ?>%"></div>
+                  </div><!-- .progress -->
+                  <div class="footer-digits clearfix">
+                      <span id="campaignPercentRaised" class="pull-left "><?php echo round((0/$campaign->target)*100); ?>%</span>
+                      <span id="campaignEndDate" class="pull-right ">52 days left</span>
+                  </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    @endforeach
+      @endforeach
+
+    </section>
 
   </div>
-</div>
-<!-- END CATEGORY -->
+</section>
+<!-- BEGIN CATEGORY
+    @foreach($slick as $slicks)
+
+    @endforeach
+END CATEGORY -->
 
 <!-- BEGIN PRODUCTS -->
-<section id="main-products" style="padding-top:70px;">
+<section id="main-products" style="padding-top:0px;">
   <div class="container">
     <div class="row section-title text-center">
       <div class="col-md-12">
@@ -244,9 +277,6 @@
                   <a href="{{ url('/products/'.$product->prod_url) }}?category=all">
                       <img src="{{ asset($product->front_image) }}" alt="{{ $product->prod_title }}" class="imgprod" style="height:340px;">
                   </a>
-                  @if($product->prod_disc > 0)
-                  <div class="sale-flash">{{ $product->prod_disc }}%</div>
-                  @endif
               </div>
               <div class="product-desc" style="text-align:center;padding-top:5px;">
                   <div class="product-title" style="margin-bottom:3px;">
@@ -254,23 +284,7 @@
                           <a href="{{ url('/products/'.$product->prod_url) }}?category=all">{{ $product->prod_title }}</a>
                       </h4>
                   </div>
-                  <div class="product-price" style="font-weight:400;font-size:16px;">
-                    @if($product->prod_disc > 0)
-                      <del>
-                        Rp <?php echo number_format($product->prod_price,0,',','.'); ?>
-                      </del>
-                    @endif
-                    <ins>
-                      @if($product->prod_disc > 0)
-                      <?php
-                        $disc = $product->prod_price*$product->prod_disc/100;
-                        echo 'Rp '.number_format($product->prod_price-$disc,0,',','.');
-                       ?>
-                      @else
-                        Rp <?php echo number_format($product->prod_price,0,',','.'); ?>
-                      @endif
-                    </ins>
-                  </div>
+                  <div class="product-price" style="font-weight:400;font-size:16px;">Rp <?php echo number_format($product->prod_price,0,',','.'); ?></div>
               </div>
           </div>
       </div>
@@ -371,7 +385,7 @@
 @else
 
 <div class="container" style="margin-top:5%;margin-bottom:5%;">
-    <h3 style="text-align:center;margin-bottom:20px;">#SONIA</h3>
+    <h3 style="text-align:center;margin-bottom:20px;">#IAABABES</h3>
 
     <div class="col-md-offset-2 col-md-8">
 
@@ -513,6 +527,21 @@
 <script type="text/javascript">
 
 $(document).on('ready',function(e){
+    $(".regular").slick({
+      dots: false,
+      infinite:true,
+      slidesToShow:3,
+      slidesToScroll:1,
+      autoplay:false,
+      autoplaySpeed:5000,
+      responsive:[{
+      breakpoint:1023,
+      settings:{slidesToShow:2,slidesToScroll:1}},
+      {breakpoint:767,
+      settings:{arrows:false,centerMode:true,centerPadding:'40px',slidesToShow:1,slidesToScroll:1}
+      }]
+    });
+
     e.preventDefault();
     $('#main-slide-show .owl-carousel').owlCarousel({
     loop:true,

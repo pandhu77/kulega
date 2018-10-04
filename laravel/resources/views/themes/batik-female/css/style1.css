@@ -128,9 +128,8 @@ dl, dt, dd, ol, ul, li {
 	text-shadow: none;
 }
 
-nav#primary-menu a:active,
-nav#primary-menu a:focus,
-nav#primary-menu a:hover { color:#fdc05e !important; }
+:active,
+:focus { outline: none !important; }
 
 
 /* ----------------------------------------------------------------
@@ -1013,10 +1012,9 @@ body.stretched #header.full-header .container {
 }
 
 #header.full-header #logo {
-	/*padding-right: 30px;*/
-	/*margin-left: 40px;*/
-	margin-right: 0px;
-	/*border-right: 1px solid #EEE;*/
+	padding-right: 30px;
+	margin-right: 30px;
+	border-right: 1px solid #EEE;
 }
 
 #header.transparent-header.full-header #logo { border-right-color: rgba(0,0,0,0.1); }
@@ -1133,7 +1131,7 @@ body.stretched #header.full-header .container {
 	padding: 39px 15px;
 	color: #444;
 	font-weight: bold;
-	font-size: 12px;
+	font-size: 13px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	font-family: 'Raleway', sans-serif;
@@ -1814,7 +1812,7 @@ body:not(.device-sm):not(.device-xs):not(.device-xxs) #header.transparent-header
 	height: 16px;
 	line-height: 16px;
 	text-align: center;
-	background-color: #fdc05e;
+	background-color: #1ABC9C;
 	border-radius: 50%;
 }
 
@@ -2056,14 +2054,7 @@ body.top-search-open #top-account { opacity: 0; }
 
 #header.sticky-header:not(.static-sticky),
 #header.sticky-header:not(.static-sticky) #header-wrap,
-#header.sticky-header:not(.static-sticky):not(.sticky-style-2):not(.sticky-style-3){ height: 60px; }
-#header #logo img {
-	padding: 25px !important;
-}
-#header.sticky-header #logo img {
-	padding: 10px !important;
-	height: 60px;
-}
+#header.sticky-header:not(.static-sticky):not(.sticky-style-2):not(.sticky-style-3) #logo img { height: 60px; }
 
 #header.sticky-header:not(.static-sticky) #primary-menu > ul > li > a {
 	padding-top: 19px;
@@ -9259,7 +9250,7 @@ ul.tab-nav.tab-nav2 li a {
 
 ul.tab-nav.tab-nav2 li.ui-state-active a {
 	top: 0;
-	background-color: #D19E9A;
+	background-color: #1ABC9C;
 	color: #FFF;
 }
 

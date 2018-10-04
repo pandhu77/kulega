@@ -24,8 +24,12 @@ Route::get('products','Web\ProductController@index');
 Route::post('ajax/getproduct','Web\ProductController@getproduct');
 Route::get('products/{url}','Web\ProductController@detail');
 
+Route::get('campaign','Web\CampaignController@index');
+Route::get('campaign/{cate}','Web\CampaignController@cate');
+
 // ABOUT
 Route::get('about','Web\AboutController@index');
+Route::get('howitwork','Web\AboutController@howitwork');
 
 // GALLERY
 Route::get('gallery','Web\GalleryController@index');
@@ -329,6 +333,9 @@ Route::get('backend/dashboard','Backend\DashboardController@index');
 Banckend product Category
 */
 Route::resource('backend/product-category','Backend\ProductCategoryController');
+
+Route::resource('backend/campaign','Backend\CampaignController');
+Route::resource('backend/campaign-category','Backend\CampaignCategoryController');
 
 /*
 Banckend Brand

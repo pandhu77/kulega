@@ -216,6 +216,14 @@
 
                     </li> -->
                     <li>
+                        <a><i class="fa fa-cube"></i> Campaign Management <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ url('') }}/backend/campaign">Campaign</a></li>
+                            <li><a href="{{ url('') }}/backend/campaign-category">Category</a></li>
+                            <!-- <li><a href="{{ url('') }}/backend/brand">Brand</a></li> -->
+                        </ul>
+                    </li>
+                    <li>
                         <a><i class="fa fa-cube"></i> Product Management <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ url('') }}/backend/product">Products</a></li>

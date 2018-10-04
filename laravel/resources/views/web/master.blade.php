@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('template/web/css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('template/web/css/master.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/sweetalert.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/slick/slick.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/slick/slick-theme.css') }}">
 
     <link rel="stylesheet" href="{{ asset('laravel/resources/views/themes/batik-female/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('laravel/resources/views/themes/batik-female/css/dark.css') }}">
@@ -62,7 +64,7 @@
 
 	  <?php $site = DB::table('cms_config')->first(); ?>
 
-    <header id="header" class="full-header">
+    <header id="header" class="full-header dark">
 
 			<div id="header-wrap">
 
@@ -70,26 +72,26 @@
 
 					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
-					<!-- Logo
-					============================================= -->
-					<div id="logo" style="border-right:none;">
-						<a href="{{ url('/') }}" class="standard-logo" data-dark-logo="{{ asset($site->logo) }}">
-							<img src="{{ asset($site->logo) }}" alt="{{ $site->site_name }}">
-						</a>
-						<a href="{{ url('/') }}" class="retina-logo" data-dark-logo="{{ asset($site->logo) }}">
-							<img src="{{ asset($site->logo) }}" alt="{{ $site->site_name }}">
-						</a>
-					</div><!-- #logo end -->
-
 					<!-- Primary Navigation
 					============================================= -->
-					<nav id="primary-menu">
+					<nav id="primary-menu" style="width: 100%">
+
+            <!-- Logo
+            ============================================= -->
+            <div id="logo" style="border-right:none;">
+              <a href="{{ url('/') }}" class="standard-logo" data-dark-logo="{{ asset($site->logo) }}">
+                <img src="{{ asset($site->logo) }}" alt="{{ $site->site_name }}">
+              </a>
+              <a href="{{ url('/') }}" class="retina-logo" data-dark-logo="{{ asset($site->logo) }}">
+                <img src="{{ asset($site->logo) }}" alt="{{ $site->site_name }}">
+              </a>
+            </div><!-- #logo end -->
 
 						<ul style="border-right:none;">
-							<li><a href="{{ url('/') }}"><div>Home</div></a></li>
-							<li><a href="{{ url('/about') }}"><div>About</div></a></li>
-							<li><a href="{{ url('/products') }}"><div>Products</div></a></li>
-              <li><a href="{{ url('/gallery') }}"><div>Lookbook</div></a></li>
+							<!--li><a href="{{ url('/') }}"><div>Home</div></a></li-->
+							<li><a href="{{ url('/campaign') }}"><div>Browse Fundraisers</div></a></li>
+							<li><a href="{{ url('/howitwork') }}"><div>How It Works</div></a></li>
+              <li><a href="{{ url('/gallery') }}"><div>Get us on WhatsApp</div></a></li>
 							@if(Session::has('memberid'))
 								<!-- <li><a href="{{ url('user/order/payment-confirmation/1') }}"><div>Confirm Payment</div></a></li> -->
                 <li><a href="{{ url('user/login') }}"><div>Halo, {{ Session::get('membername') }}</div></a></li>
@@ -143,10 +145,11 @@
 						============================================= -->
 						<div id="top-search">
 							<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
-							<form action="{{ url('products') }}" method="get">
-								<input type="text" name="search" class="form-control" value="" placeholder="Search...">
+							<form action="search.html" method="get">
+								<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
 							</form>
 						</div><!-- #top-search end -->
+            <div style="clear: both;"></div>
 
 					</nav><!-- #primary-menu end -->
 
@@ -166,62 +169,82 @@
         }
     </style>
 
-    <footer style="background-color:#f6f6f6;">
+    <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-sm-6 col-md-3">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-6 col-sm-6 col-md-2">
 
-            <a href="{{ url('/') }}">
-              <img src="{{ asset($site->logo) }}" alt="{{ $site->site_name }}">
-            </a>
+              <a href="{{ url('/') }}">
+                <img src="{{ asset($site->logo) }}" alt="{{ $site->site_name }}">
+              </a>
 
-            <?php $socialmedia = DB::table('cms_socialmedia')->where('enable',1)->get(); ?>
-            <ul class="social-media">
-                @foreach($socialmedia as $sosmed)
-                    <li style="border: 2px solid #f6f6f6;">
-                      <a href="{{ $sosmed->url }}" style="color:#000;"><i class="{{ $sosmed->icon }}"></i>
-                      </a>
-                    </li>
-                @endforeach
-            </ul>
+              <?php $socialmedia = DB::table('cms_socialmedia')->where('enable',1)->get(); ?>
+              <ul class="social-media" style="text-align: right;">
+                  @foreach($socialmedia as $sosmed)
+                      <li style="border: 2px solid #f6f6f6;">
+                        <a href="{{ $sosmed->url }}"><i class="{{ $sosmed->icon }}"></i>
+                        </a>
+                      </li>
+                  @endforeach
+              </ul>
 
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-2 footer-menu">
+              <h3> Fundraise </h3>
+              <ul>  
+                  <li> <a href="{{ url('/about') }}"> Browse Fundraisers </a> </li>
+                  <li> <a href="{{ url('/contact') }}"> How It Works </a> </li>
+                  <li> <a href="{{ url('/contact') }}"> Get us on WhatsApp </a> </li>
+                  <!-- <li> <a href="{{ url('check/order') }}"> Check Order </a> </li> -->
+                  <!-- <li> <a href="{{ url('/magazine') }}"> Magazine </a> </li> -->
+              </ul>
+            </div> <!-- ./col -->
+            <div class="col-xs-6 col-sm-6 col-md-2">
+              <h3> How it works </h3>
+
+              <?php $footercate = DB::table('lk_product_category')->where('kateg_enable',1)->get(); ?>
+
+              <ul>
+                  @foreach($footercate as $foot)
+                      <li> <a href="{{ url('/products?category='.$foot->kateg_url) }}"> {{ $foot->kateg_name }} </a> </li>
+                  @endforeach
+              </ul>
+            </div> <!-- ./col -->
+            <div class="col-xs-6 col-sm-6 col-md-2">
+              <h3> About Us </h3>
+
+              <?php $menu = DB::table('cms_menu')->where('enable',1)->where('type','Footer')->orderBy('order_row','ASC')->get(); ?>
+
+              <ul>
+                  @foreach($menu as $men)
+                      <li> <a href="{{ url($men->url) }}"> {{ $men->menu }} </a> </li>
+                  @endforeach
+                  @if(Session::has('memberid'))
+    								<li><a href="{{ url('user/order/payment-confirmation/1') }}"><div>Confirm Payment</div></a></li>
+                  @else
+    								<li><a href="{{ url('user/login') }}?redirect={{ url('user/order/payment-confirmation/1') }}"><div>Confirm Payment</div></a></li>
+                  @endif
+              </ul>
+            </div> <!-- ./col -->
+
+            <div class="col-xs-6 col-sm-6 col-md-2">
+              <h3> Support </h3>
+
+              <?php $menu = DB::table('cms_menu')->where('enable',1)->where('type','Footer')->orderBy('order_row','ASC')->get(); ?>
+
+              <ul>
+                  @foreach($menu as $men)
+                      <li> <a href="{{ url($men->url) }}"> {{ $men->menu }} </a> </li>
+                  @endforeach
+                  @if(Session::has('memberid'))
+                    <li><a href="{{ url('user/order/payment-confirmation/1') }}"><div>Confirm Payment</div></a></li>
+                  @else
+                    <li><a href="{{ url('user/login') }}?redirect={{ url('user/order/payment-confirmation/1') }}"><div>Confirm Payment</div></a></li>
+                  @endif
+              </ul>
+            </div> <!-- ./col -->
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-3">
-            <h3> Company Info </h3>
-            <ul>
-                <li> <a href="{{ url('/about') }}"> About Us </a> </li>
-                <li> <a href="{{ url('/contact') }}"> Contact Us </a> </li>
-                <!-- <li> <a href="{{ url('check/order') }}"> Check Order </a> </li> -->
-                <!-- <li> <a href="{{ url('/magazine') }}"> Magazine </a> </li> -->
-            </ul>
-          </div> <!-- ./col -->
-          <div class="col-xs-6 col-sm-6 col-md-3">
-            <h3> Our Products </h3>
-
-            <?php $footercate = DB::table('lk_product_category')->where('kateg_enable',1)->get(); ?>
-
-            <ul>
-                @foreach($footercate as $foot)
-                    <li> <a href="{{ url('/products?category='.$foot->kateg_url) }}"> {{ $foot->kateg_name }} </a> </li>
-                @endforeach
-            </ul>
-          </div> <!-- ./col -->
-          <div class="col-xs-6 col-sm-6 col-md-3">
-            <h3> CUSTOMER CARE </h3>
-
-            <?php $menu = DB::table('cms_menu')->where('enable',1)->where('type','Footer')->orderBy('order_row','ASC')->get(); ?>
-
-            <ul>
-                @foreach($menu as $men)
-                    <li> <a href="{{ url($men->url) }}"> {{ $men->menu }} </a> </li>
-                @endforeach
-                @if(Session::has('memberid'))
-  								<li><a href="{{ url('user/order/payment-confirmation/1') }}"><div>Confirm Payment</div></a></li>
-                @else
-  								<li><a href="{{ url('user/login') }}?redirect={{ url('user/order/payment-confirmation/1') }}"><div>Confirm Payment</div></a></li>
-                @endif
-            </ul>
-          </div> <!-- ./col -->
           <!-- <div class="col-xs-12 col-sm-6 col-md-6">
             <h3> SUBSCRIBE NOW </h3>
             <form class="form-inline" action="{{ url('/doSubscribe') }}" method="post">
@@ -246,6 +269,7 @@
     <script type="text/javascript" src="{{ asset('laravel/resources/views/themes/batik-female/js/plugins.js') }}"></script>
     <script type="text/javascript" src="{{ asset('laravel/resources/views/themes/batik-female/js/functions.js') }}"></script>
     <script src="{{asset('assets/js/sweetalert.min.js')}}"></script>
+    <script src="{{asset('assets/slick/slick.min.js')}}" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
         $(window).on('load',function(){

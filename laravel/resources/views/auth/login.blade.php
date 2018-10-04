@@ -23,7 +23,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Backend Login | I Am Addicted</title>
+	<title>Backend Login | Kulega.com</title>
 
 </head>
 
@@ -48,7 +48,7 @@
 
 						<div class="row center" style="margin-bottom:40px;">
 							<a href="{{ url('/') }}">
-                                <img src="{{ asset($site->logo) }}" alt="Canvas Logo">
+                                <img src="{{ asset($site->logo) }}" alt="Canvas Logo" style="width: 250px">
                             </a>
 						</div>
 

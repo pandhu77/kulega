@@ -387,7 +387,7 @@ footer{
 footer h3 {
 
   font-family: 'texgyreadventor-bold';
-	color: #000;
+	color: #fff;
   font-size: 12px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -409,7 +409,7 @@ footer ul li a {
 }
 
 footer ul li a:hover{
-  color: #bfbfbf;
+  color: #fdc05e;
 }
 footer a {
 	color: #bfbfbf;
@@ -444,9 +444,12 @@ footer .social-media li a{
 }
 
 
-footer .social-media li:hover,footer .social-media li:hover a{
+footer .social-media li:hover{
+  background-color: #fff;
+}
+
+footer .social-media li:hover a{
   color: #000;
-  background-color: #f6f6f6;
 }
 
 footer .copyright{
