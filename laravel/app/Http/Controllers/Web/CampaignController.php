@@ -130,25 +130,25 @@ class CampaignController extends Controller
                         ->where('enable','=',1)
                         ->where('url','=',$url)
                         ->first();
-                        
+
         if(count($products) > 0){
 
-            $images     = DB::table('tmp_product_image')->where('id','=',$products->id)->get();
+            /*$images     = DB::table('tmp_product_image')->where('id','=',$products->id)->get();
             $varcolor   = DB::table('ms_product_varian')->where('id',$products->id)->groupBy('varian_color')->get();
             $varsize    = DB::table('ms_product_varian')->where('id',$products->id)->groupBy('varian_size')->get();
             $allprod    = DB::table('lk_campaign')
                             ->join('lk_campaign_category', 'lk_campaign_category.kateg_id', '=', 'lk_campaign.parent')
                             ->where('enable','=',1)
-                            ->get();
+                            ->get();*/
 
             return view('web.campaign-detail',[
                 'banners'   => $banners,
                 'category'  => $category,
-                'products'  => $products,
-                'images'    => $images,
-                'allprod'   => $allprod,
-                'varcolor'  => $varcolor,
-                'varsize'   => $varsize
+                'campaign'  => $products,
+                //'images'    => $images,
+                //'campaign'   => $allprod
+                //'varcolor'  => $varcolor,
+                //'varsize'   => $varsize
             ]);
 
         } else {
