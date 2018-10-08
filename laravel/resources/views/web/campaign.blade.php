@@ -1,5 +1,5 @@
 @extends('web.master')
-@section('title','KULEGA')
+@section('title','www.kulega.com')
 @section('content')
 
 @push('css')
@@ -21,8 +21,8 @@
     }
 
     .wrap-outer h1{
-        font-family: 'Pacifico', cursive;
-        color: #D19E9A;
+        /* font-family: 'Pacifico', cursive; */
+        color: #1ABC9C;
         font-style: italic;
         font-size: 70px;
     }
@@ -49,13 +49,13 @@
             background-position:bottom 0px left -250px !important;
         }
     }
-
+/*
     .product{
         width: 100% !important;
-    }
+    } */
 
     .product-title h4 a{
-        color:#D19E9A;
+        color:#1ABC9C;
     }
 
     .product-title h5 a{
@@ -242,190 +242,124 @@
 @endforeach
 <!-- END BANNER -->
 
+<section id="content" style="background: #eee;">
 
-<!-- BEGIN PRODUCTS -->
-<section id="main-products" style="background-color: #efefef;">
-  <div class="container">
-    <div class="row section-title text-center">
-    <div class="col-md-12">
-      <div class="col-xs-6 col-md-6" style="text-align:left;margin-bottom:20px;">
-        <h3 style="margin-bottom:0px;"><?= ucwords(str_replace('-',' ',$category)); ?></h3>
-        <!-- <p>#iamaddicted{{ $category }}</p> -->
-      </div>
-      <div class="col-xs-6 col-md-6">
-          <div class="col-sm-3 col-md-3" style="margin-bottom:10px;float: right;">
-            Views:
-            <select class="" name="view_item" style="width: 120px;height: 40px;padding-left: 10px;" onchange="changeview()">
-                <option value="20" <?php if($view == 20){echo "selected";} ?>>20</option>
-                @if($countall >= 20 && $countall <= 40)
-                    <option value="40" <?php if($view == 40){echo "selected";} ?>>40</option>
-                @endif
-                @if($countall >= 40 && $countall <= 60)
-                    <option value="60" <?php if($view == 60){echo "selected";} ?>>60</option>
-                @endif
-                @if($countall >= 60 && $countall <= 80)
-                    <option value="80" <?php if($view == 80){echo "selected";} ?>>80</option>
-                @endif
-                @if($countall >= 80 && $countall <= 100)
-                    <option value="100" <?php if($view == 100){echo "selected";} ?>>100</option>
-                @endif
-                <option value="all" <?php if($view == 'all'){echo "selected";} ?>>View All</option>
-            </select>
-          </div>
-          <div class="col-sm-3 col-md-3" style="margin-bottom:10px;float: right;">
-            Sort By:
-            <select class="" name="" style="width: 120px;height: 40px;padding-left: 10px;float: right;">
-                <option value="">DEFAULT</option>
-            </select>
-          </div>
-      </div>
-    </div>
-    </div>
-    <div class="row section-content">
-    <div class="col-md-12 col-sm-6">
+  <div class="content-wrap">
 
-    <div class="col-md-3 sidebar hidden-xs hidden-sm" style="margin-right:20px;">
-        <div class="campaignCausesFilter">
-            <h3>Categories</h3>
-            <div class="browse-categories">
-                <ul id="filterCatDesk" class="cat-list">
-                    @foreach($listcategory as $list)
-                    <li class="cat-list-item">
-                        <a data-category="health" href="{{ url('/campaign/'.$list->kateg_url.'/') }}">
-                            <span class="pull-left icon-education icons-browse">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" width="15px" height="15px" viewBox="0 0 501.164 501.164" style="enable-background:new 0 0 306 306;" xml:space="preserve" y="10px">
-                                <g>
-                                    <g id="chevron-right">
-                                        <polygon points="94.35,0 58.65,35.7 175.95,153 58.65,270.3 94.35,306 247.35,153   "/>
-                                    </g>
-                                </g>
-                                </svg>
-                            </span>
-                            {{ $list->kateg_name }}
-                        </a>
-                    </li>
-                    @endforeach   
-                </ul>
-            </div>
+    <div class="container clearfix">
+
+      <div class="row section-title text-center">
+        <div class="col-md-12" style="margin-bottom:20px;text-align:right;">
+          Views:
+          <select class="" name="view_item" style="width: 120px;height: 40px;padding-left: 10px;" onchange="changeview()">
+              <option value="20" <?php if($view == 20){echo "selected";} ?>>20</option>
+              @if($countall >= 20 && $countall <= 40)
+                  <option value="40" <?php if($view == 40){echo "selected";} ?>>40</option>
+              @endif
+              @if($countall >= 40 && $countall <= 60)
+                  <option value="60" <?php if($view == 60){echo "selected";} ?>>60</option>
+              @endif
+              @if($countall >= 60 && $countall <= 80)
+                  <option value="80" <?php if($view == 80){echo "selected";} ?>>80</option>
+              @endif
+              @if($countall >= 80 && $countall <= 100)
+                  <option value="100" <?php if($view == 100){echo "selected";} ?>>100</option>
+              @endif
+              <option value="all" <?php if($view == 'all'){echo "selected";} ?>>View All</option>
+          </select>
         </div>
-    </div>
+      </div>
 
-    <div class="col-md-9">
+      <!-- Post Content
+      ============================================= -->
+      <div class="postcontent nobottommargin col_last">
 
-        <script type="text/javascript">
-            function changeview(){
-                var view = $('[name=view_item]').val();
-                location.href = "{{ url('/products') }}?category={{ $category }}&view="+view;
-            }
-        </script>
+        <!-- Shop
+        ============================================= -->
+        <div id="shop" class="shop product-3 grid-container clearfix">
 
-      @foreach($products as $campaign)
-      <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="col-md-12 kulega" style="padding: 0px !important; margin-bottom: 20px; background-color: #fff;" onclick="window.location.href='{{ url('/campaign/'.$campaign->kateg_url.'/'.$campaign->url) }}'">
-            <div class="widget-container home_trending" style="background-color: #fff;">
-              <div class="image">
-                <img src="{{ url($campaign->image) }}" class="img-responsive">
-              </div>
-              <p class="small-badge">
-                <span id="campaignCause" class="label label-large label-color arrowed-right cat-tag cat-personal">{{ $campaign->kateg_name }}</span>
-              </p>
-              <div class="widget-details">
-                <div class="widget-mid">
-                  <h5 id="campaignTitle"><a href="{{ url('/campaign/'.$campaign->kateg_url.'/'.$campaign->url) }}" tabindex="0">{{ $campaign->name }}</a></h5>
-
-                  <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>
-
-                  <div class="widget-footter">
-                      <div class="amt-raised clearfix">
-                          <span class="pull-left"><span style="font-size: 18px;font-weight: bold;">Rp</span> <span class="campaignAmountRaised"><?php echo number_format($campaign->target, 2); ?></span></span>
-                      </div><!-- .amt-raised -->
-
-                      <div class="progress ">
-                          <div id="campaignProgressRaised" class="progress-bar" style="width:<?php echo round((0/$campaign->target)*100); ?>%"></div>
-                      </div><!-- .progress -->
-                      <div class="footer-digits clearfix">
-                          <span id="campaignPercentRaised" class="pull-left "><?php echo round((0/$campaign->target)*100); ?>%</span>
-                          <span id="campaignEndDate" class="pull-right ">52 days left</span>
+          @foreach($products as $campaign)
+          <div class="product cate{{ $campaign->parent }} col-xs-12 col-sm-6 col-md-4" style="padding: 0 15px 15px 15px;">
+              <div class="col-md-12 kulega" style="padding: 0px !important; margin-bottom: 10px; background-color: #fff;" onclick="window.location.href='{{ url('/campaign/'.$campaign->url) }}<?php if(isset($_GET['category'])){echo "?category=".$_GET['category'];} ?>'">
+                <div class="widget-container home_trending" style="background-color: #fff;">
+                  <div class="image">
+                    <img src="{{ url($campaign->image) }}" class="img-responsive">
+                  </div>
+                  <p class="small-badge">
+                    <span id="campaignCause" class="label label-large label-color arrowed-right cat-tag cat-personal">{{ $campaign->kateg_name }}</span>
+                  </p>
+                  <div class="widget-details">
+                    <div class="widget-mid">
+                      <div class="product-title">
+                        <h5 id="campaignTitle"><a href="{{ url('/campaign/'.$campaign->url) }}<?php if(isset($_GET['category'])){echo "?category=".$_GET['category'];} ?>" tabindex="0">{{ $campaign->name }}</a></h5>
                       </div>
+
+                      <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>
+
+                      <div class="widget-footter">
+                          <div class="amt-raised clearfix product-price">
+                              <span class="pull-left"><span style="font-size: 18px;font-weight: bold;">Rp</span> <span class="campaignAmountRaised"><?php echo number_format($campaign->target,0,',','.'); ?></span></span>
+                              <ins style="display: none;"><?php echo $campaign->target; ?></ins>
+                          </div><!-- .amt-raised -->
+
+                          <div class="progress ">
+                              <div id="campaignProgressRaised" class="progress-bar" style="width:<?php echo round((0/$campaign->target)*100); ?>%"></div>
+                          </div><!-- .progress -->
+                          <div class="footer-digits clearfix">
+                              <span id="campaignPercentRaised" class="pull-left "><?php echo round((0/$campaign->target)*100); ?>%</span>
+                              <span id="campaignEndDate" class="pull-right ">52 days left</span>
+                          </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
           </div>
-      </div>
-      @endforeach
+          @endforeach
 
-    </div>
+        </div><!-- #shop end -->
 
-    </div>
-    </div>
+      </div><!-- .postcontent end -->
 
-    <div class="row">
-        <div class="col-md-12" style="text-align:center;text-align: center;color: #969696;font-size: 16px;margin-top: 30px;">
-            @if($view < $countall)
-                {{ $view }} of {{ $countall }} Total
-            @else
-                {{ $countall }} of {{ $countall }} Total
-            @endif
+      <!-- Sidebar
+      ============================================= -->
+      <div class="sidebar nobottommargin">
+        <div class="sidebar-widgets-wrap">
+
+          <div class="widget widget-filter-links clearfix">
+
+            <h4>Select Category</h4>
+            <ul class="custom-filter" data-container="#shop" data-active-class="active-filter">
+              <li class="widget-filter-reset <?php if(!isset($category) || $category == 'all'){echo 'active-filter';} ?>"><a href="#" data-filter="*">Clear</a></li>
+              @foreach($allcategory as $cate)
+              <li <?php if($cate->kateg_url == $category){echo 'class="active-filter"';} ?>>
+                <a href="#" data-filter=".cate{{ $cate->kateg_id }}">{{ $cate->kateg_name }}</a>
+              </li>
+              @endforeach
+            </ul>
+
+          </div>
+
+          <div class="widget widget-filter-links clearfix">
+
+            <h4>Sort By</h4>
+            <ul class="shop-sorting">
+              <li class="widget-filter-reset active-filter"><a href="#" data-sort-by="original-order">Clear</a></li>
+              <li><a href="#" data-sort-by="name">Name</a></li>
+              <li><a href="#" data-sort-by="price_lh">Target: Low to High</a></li>
+              <li><a href="#" data-sort-by="price_hl">Target: High to Low</a></li>
+            </ul>
+
+          </div>
+
         </div>
+      </div><!-- .sidebar end -->
 
-        @if($view < $countall)
-            <div class="col-md-12" style="text-align:center;margin-top:20px;">
-                <a href="{{ url('/products') }}?category={{ $category }}&view=<?php echo $view+20; ?>" class="btn btn-primary" style="border-radius: 0;background-color: #000;">View More</a>
-            </div>
-        @endif
     </div>
 
   </div>
-</section>
-<!-- ./END PRODUCTS -->
 
-<!-- MODAL DETAIL PRODUCT -->
-<div class="modal fade" id="detailprod" role="dialog">
-    <div class="modal-dialog modal-lg" style="background-color:#fff;">
-
-      <!-- Modal content-->
-      <div class="modal-content" style="border-radius:0px;background:url({{ asset('assets/bg-product.png') }});background-repeat:no-repeat;">
-        <div class="modal-header" style="border-bottom:none;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <!-- <h4 class="modal-title">Modal Header</h4> -->
-        </div>
-        <div class="modal-body" id="prodcontent">
-
-        </div>
-      </div>
-
-    </div>
-</div>
-
-<!-- MODAL ADD TO CART -->
-<div class="modal fade" id="myModal" role="dialog" style="z-index:99999999999;">
-  <div class="modal-dialog" style="background-color:#fff;">
-
-    <!-- Modal content-->
-    <div class="modal-content" style="border-radius:0px;background:url({{ asset('assets/bg-brush.png') }});background-repeat:no-repeat;">
-      <div class="modal-header" style="border-bottom:none;">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">
-            <img src="{{ asset('assets/cart-success.png') }}" alt="Success Add Cart" class="img-responsive" style="margin:auto;height:100px;">
-        </h4>
-      </div>
-      <div class="modal-body" style="padding:15px 50px;" id="successadd">
-
-      </div>
-      <div class="modal-footer" style="border-top:none;text-align:center;">
-          <a href="{{ url('products/?category=') }}all&view=20" class="btn btn-default" style="border-radius:5px;padding:10px 30px;background-color:#000;border-color:#000;">Shop More</a>
-          @if(Session::has('memberid'))
-              <a href="{{ url('cart') }}" class="btn btn-default" style="border-radius:5px;padding:10px 30px;">Checkout</a>
-          @else
-              <a href="{{ url('user/login') }}?redirect={{ url('/cart') }}" class="btn btn-default" style="border-radius:5px;padding:10px 30px;">Checkout</a>
-          @endif
-      </div>
-    </div>
-
-  </div>
-</div>
-
+</section><!-- #content end -->
 
 @push('js')
 
@@ -433,6 +367,13 @@
 <!-- <script type="text/javascript" src="{{ asset('templates/web/plugins/kartik-v-bootstrap-star-rating-ca43ee3/themes/krajee-svg/theme.min.js') }}"></script> -->
 <script type="text/javascript">
 $(".rating").rating().unbind();
+</script>
+
+<script type="text/javascript">
+    function changeview(){
+        var view = $('[name=view_item]').val();
+        location.href = "{{ url('/products') }}?category={{ $category }}&view="+view;
+    }
 </script>
 
 <script type="text/javascript">
@@ -476,6 +417,59 @@ $(".rating").rating().unbind();
 <script type="text/javascript">
     localStorage.removeItem('jsvouchervalue');
     localStorage.removeItem('jsvouchertype');
+</script>
+
+<script>
+  jQuery(document).ready( function($){
+    $('#shop').isotope({
+      transitionDuration: '0.65s',
+      getSortData: {
+        name: '.product-title',
+        price_lh: function( itemElem ) {
+          if( $(itemElem).find('.product-price').find('ins').length > 0 ) {
+            var price = $(itemElem).find('.product-price ins').text();
+          } else {
+            var price = $(itemElem).find('.product-price').text();
+          }
+
+          return parseFloat( price );
+        },
+        price_hl: function( itemElem ) {
+          if( $(itemElem).find('.product-price').find('ins').length > 0 ) {
+            var price = $(itemElem).find('.product-price ins').text();
+          } else {
+            var price = $(itemElem).find('.product-price').text();
+          }
+
+          return parseFloat( price );
+        }
+      },
+      sortAscending: {
+        name: true,
+        price_lh: true,
+        price_hl: false
+      }
+    });
+
+    $('.custom-filter:not(.no-count)').children('li:not(.widget-filter-reset)').each( function(){
+      var element = $(this),
+        elementFilter = element.children('a').attr('data-filter'),
+        elementFilterContainer = element.parents('.custom-filter').attr('data-container');
+
+      elementFilterCount = Number( jQuery(elementFilterContainer).find( elementFilter ).length );
+
+      element.append('<span>'+ elementFilterCount +'</span>');
+
+    });
+
+    $('.shop-sorting li').click( function() {
+      $('.shop-sorting').find('li').removeClass( 'active-filter' );
+      $(this).addClass( 'active-filter' );
+      var sortByValue = $(this).find('a').attr('data-sort-by');
+      $('#shop').isotope({ sortBy: sortByValue });
+      return false;
+    });
+  });
 </script>
 
 @endpush

@@ -1,5 +1,5 @@
 @extends('web.master')
-@section('title','Sonia')
+@section('title','www.kulega.com')
 @section('content')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />

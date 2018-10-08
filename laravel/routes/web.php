@@ -25,7 +25,7 @@ Route::post('ajax/getproduct','Web\ProductController@getproduct');
 Route::get('products/{url}','Web\ProductController@detail');
 
 Route::get('campaign','Web\CampaignController@index');
-Route::get('campaign/{cate}','Web\CampaignController@cate');
+Route::get('campaign/{url}','Web\CampaignController@detail');
 
 // ABOUT
 Route::get('about','Web\AboutController@index');

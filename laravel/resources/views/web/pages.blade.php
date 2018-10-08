@@ -1,5 +1,5 @@
 @extends('web.master')
-@section('title','Sonia')
+@section('title','www.kulega.com')
 @section('content')
 
 <?php $website = DB::table('cms_config')->first(); ?>

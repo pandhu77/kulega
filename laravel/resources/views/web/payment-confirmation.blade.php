@@ -1,5 +1,5 @@
 @extends('web.master')
-@section('title','Sonia')
+@section('title','www.kulega.com')
 @section('content')
 
 @push('css')
@@ -56,7 +56,7 @@
 
         <div class="container clearfix">
 
-            <h3 style="text-align:center;margin-bottom:40px;">Thank you for shopping with Sonia !</h3>
+            <h3 style="text-align:center;margin-bottom:40px;">Thank you for shopping with Kulega !</h3>
             <hr>
 
             <div class="col-sm-offset-3 col-sm-3" style="margin-top:20px;text-align:center;">
