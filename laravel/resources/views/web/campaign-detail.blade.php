@@ -28,9 +28,9 @@
         width: 100%;
         z-index: 1000;
         left: 0;
-        background: -moz-linear-gradient(top, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2%, rgba(0,0,0,0.9) 100%);
-        background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2%, rgba(0,0,0,0.9) 100%);
-        background: linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2%, rgba(0,0,0,0.9) 100%);
+        background: -moz-linear-gradient(top, rgba(0,0,0,0) 0, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
+        background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#e6000000', GradientType=0);
         margin: 0px;
     }
@@ -96,7 +96,7 @@
         <div class="container clearfix">
 
             <div style="padding:20px 0px;color:#a3a2a2;font-size:20px;">
-                <h2>Help Sethu improve lives of Children with Autism</h2>
+                <h2>{{ $campaign->name }}</h2>
             </div>
 
             <div class="col-md-12 col-sm-12">
