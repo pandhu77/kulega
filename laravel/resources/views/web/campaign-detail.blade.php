@@ -86,6 +86,74 @@
     .description p {
         margin: 0px;
     }
+
+    .main-actions {
+        margin-bottom: 10px;
+    }
+
+    .content-right-section p.contribute-button {
+        margin: 0 0 1.5px !important;
+        font-size: 22px;
+        color: #FFFFFF;
+        letter-spacing: 0;
+    }
+
+    .content-right-section .btn-contribute {
+        text-transform: uppercase;
+        box-shadow: 0 2px 10px 0 #018c8b;
+        -moz-box-shadow: 0 2px 10px 0 #018c8b;
+        -webkit-box-shadow: 0 2px 10px 0 #018c8b;
+        -ms-box-shadow: 0 2px 10px 0 #018c8b;
+        border-radius: 5px;
+        background: #0fd3cd !important;
+        color: #ffffff !important;
+        border: 0px;
+    }
+
+    .content-right-section .btn-contribute:hover {
+        background-color: #018c8b !important;
+    }
+
+    p.contribute-button h3 {
+        margin: 0px;
+        color: #fff;
+        padding: 10px;
+    }
+
+    .amount-raised {
+        margin-bottom: 15px;
+        padding-right: 0;
+    }
+
+    .amount-raised h2 {
+        font-size: 32px;
+        margin-top: 0;
+        margin-bottom: 5px;
+        padding: 0;
+        font-family: 'Source Sans Pro',sans-serif;
+        text-align: left;
+        font-weight: normal;
+        height: 55px;
+    }
+
+    .amount-raised h2.kt-campaign-backers {
+        font-size: 28px;
+        display: inline-block;
+        padding: 0;
+        vertical-align: sub;
+    }
+
+    .amount-raised p.kt-campaign-backers {
+        font-size: 16px;
+        display: inline-block;
+        padding: 0;
+        margin: 0px;
+        color: #777;
+    }
+
+    .backers {
+        padding: 0;
+    }
 </style>
 @endpush
 
@@ -141,6 +209,36 @@
                 </div>
 
                 <div class="col-md-4 col-sm-4 content-right-section kt-campaign-details campaign-details-ab-uppersection main-actions clearfix">
+                    <div class="top-donor-section">
+                        <div class="clearfix main-actions">
+                            <p class="hidden-xs contribute-button">
+                                <button class="btn btn-lg btn-info text-center col-md-12 btn-contribute" id="donate" href="javascript:void(0);">
+                                    <h3>
+                                        <i class="fa fa-heart customHeart"></i> Donate Now
+                                    </h3>
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="amount-raised-section">
+                        <div class="amount-raised">
+                            <h2><span style="font-size: 44px;font-weight: bold; color: #333;">Rp</span> <?php echo number_format($campaign->target,0,',','.'); ?></h2>
+                            <p style="margin: 0px;">raised of <b>&nbsp;Rp. <?php echo number_format($campaign->target,0,',','.'); ?></b> goal</p>
+                        </div>
+                    </div>
+                    <div class="progress ">
+                        <div id="campaignProgressRaised" class="progress-bar" style="width:<?php echo round((0/$campaign->target)*100); ?>%"></div>
+                    </div><!-- .progress -->
+                    <div class="clearfix">
+                        <div class="col-xs-6 amount-raised backers">
+                            <h2 class="kt-campaign-backers">10</h2>
+                            <p class="kt-campaign-backers">supporters</p>
+                        </div>
+                        <div class="col-xs-6 amount-raised ">
+                            <h2 class="kt-campaign-backers">17</h2>
+                            <p class="kt-campaign-backers">days left</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -155,9 +253,18 @@
 
 
 @push('js')
+<script type="text/javascript">
+jQuery(document).ready( function($){
 
+    $('#donate').click(function(){
+        swal("A wild Pikachu appeared! What do you want to do?")
+        .then((value) => {
+           swal('The returned value is: ${value}');
+        });
+    });
 
-
+});
+</script>
 @endpush
 
 @endsection
