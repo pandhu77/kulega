@@ -23,7 +23,13 @@
     <link rel="stylesheet" href="{{ asset('laravel/resources/views/themes/batik-female/css/fonts/font-icons.ttf') }}">
     <link rel="stylesheet" href="{{ asset('laravel/resources/views/themes/batik-female/css/fonts/font-icons.woff') }}">
 
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
     <style media="screen">
+        body{
+          font-family: 'Noto Sans', sans-serif !important;
+        }
+
         .loading{
             width: 100%;
             height: 100vh;
@@ -192,7 +198,7 @@
             </div>
             <div class="col-xs-6 col-sm-6 col-md-2 footer-menu">
               <h3> Fundraise </h3>
-              <ul>  
+              <ul>
                   <li> <a href="{{ url('/about') }}"> Browse Fundraisers </a> </li>
                   <li> <a href="{{ url('/contact') }}"> How It Works </a> </li>
                   <li> <a href="{{ url('/contact') }}"> Get us on WhatsApp </a> </li>
