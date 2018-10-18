@@ -176,6 +176,46 @@
         object-fit:scale-down;
     }
 
+    .portfolio-overlay a{
+      left: 58%;
+    }
+
+    .fconnect h2{
+      margin-top: 0;
+      font-size: 20px !important;
+      margin-bottom: 10px !important;
+      text-align: center;
+      line-height: 29px;
+    }
+
+    .fconnect .watsappBg{
+      background: #f4f4f4;
+      padding: 22px 60px;
+      height: 204px;
+    }
+
+    .fconnect .fbBg{
+      background: #e7e7ee;
+      padding: 22px 60px;
+      height: 204px;
+    }
+
+    .fconnect .watsappBg .btn-whatsapp{
+      background: #34af23;
+      border-color: #88d67f;
+      width: 100%;
+      outline: none;
+      color: #fff;
+    }
+
+    .fconnect .fbBg .btn-fb{
+      background: #3a589b;
+      border-color: #6b88c5;
+      width: 100%;
+      outline: none;
+      color: #fff;
+    }
+
     @media(max-width:991px){
         #stock-notif{
             margin-top: 85px;
@@ -242,15 +282,15 @@
               </div>
 
               <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>
-              
+
               <div class="widget-footter">
                   <div class="amt-raised clearfix">
                       <span class="pull-left"><span style="font-size: 18px;font-weight: bold;">Rp</span> <span class="campaignAmountRaised"><?php echo number_format($campaign->target, 2); ?></span></span>
-                  </div><!-- .amt-raised -->
+                  </div>
 
                   <div class="progress ">
                       <div id="campaignProgressRaised" class="progress-bar" style="width:<?php echo round((0/$campaign->target)*100); ?>%"></div>
-                  </div><!-- .progress -->
+                  </div>
                   <div class="footer-digits clearfix">
                       <span id="campaignPercentRaised" class="pull-left "><?php echo round((0/$campaign->target)*100); ?>%</span>
                       <span id="campaignEndDate" class="pull-right ">52 days left</span>
@@ -277,262 +317,232 @@ END CATEGORY -->
   <div class="container">
     <div class="row section-title text-center">
       <div class="col-md-12">
-        <h3>Our New Products</h3>
+        <h3 style="margin: 0px;font-family:'Noto Sans';">Browse Fundraisers</h3>
+        <p class="text-center" style="color: #777;font-size: 16px;font-family:'Noto Sans'; margin: 0px;">The cause you believe in are all in here.</p>
       </div>
     </div>
     <div class="row section-content">
 
-      @foreach($products as $product)
-      <div class="col-xs-6 col-sm-4 col-md-3" style="margin-bottom:20px;">
-          <div class="product clearfix">
-              <div class="product-image">
-                  <a href="{{ url('/products/'.$product->prod_url) }}?category=all">
-                      <img src="{{ asset($product->front_image) }}" alt="{{ $product->prod_title }}" class="imgprod" style="height:340px;">
-                  </a>
+      <div id="oc-portfolio" class="owl-carousel portfolio-carousel carousel-widget" data-margin="1" data-loop="true" data-nav="true" data-pagi="false"data-items-xxs="1" data-items-xs="2" data-items-sm="3" data-items-md="4" data-items-lg="4">
+
+        @foreach($getcate as $cate)
+        <div class="oc-item">
+          <div class="iportfolio">
+            <div class="portfolio-image">
+              <a href="#">
+                <img src="{{ url($cate->kateg_image) }}" alt="Open Imagination">
+              </a>
+              <div class="portfolio-overlay">
+                <a href="{{ url($cate->kateg_image) }}" class="left-icon" data-lightbox="image"><i class="icon-line-search"></i></a>
               </div>
-              <div class="product-desc" style="text-align:center;padding-top:5px;">
-                  <div class="product-title" style="margin-bottom:3px;">
-                      <h4 style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:0px;">
-                          <a href="{{ url('/products/'.$product->prod_url) }}?category=all">{{ $product->prod_title }}</a>
-                      </h4>
-                  </div>
-                  <div class="product-price" style="font-weight:400;font-size:16px;">Rp <?php echo number_format($product->prod_price,0,',','.'); ?></div>
-              </div>
+            </div>
+            <div class="portfolio-desc">
+              <h3><a href="#">{{ $cate->kateg_name }}</a></h3>
+              <span><a href="#">Media</a>, <a href="#">Icons</a></span>
+            </div>
           </div>
+        </div>
+        @endforeach
+
       </div>
-      @endforeach
 
-    </div>
-
-    <div class="container" style="text-align:center;">
-      <a href="{{ url('/products?category=all') }}" class="button button-small nomargin">View More</a>
     </div>
 
   </div>
 </section>
 <!-- ./END PRODUCTS -->
 
-
-<!-- BEGIN BANNER -->
 <style media="screen">
-.banner-img{
-    display: none;
-}
-
-@media(max-width:991px) {
-    .banner-img{
-        display: block;
-    }
-
-    .banner-bg{
-        display: none;
-    }
-}
+  .heading-block ul li{
+    font-size: 20px;
+  }
 </style>
 
-@foreach($banners as $banner)
-<div class="banner-bg" style="display:none;">
-    <section id="subscribe-form" style="background:url('{{ asset('assets/img/banners/banner2.jpg') }}'); background-position: center center;
+<section class="section nobg notopmargin clearfix" style="padding: 20px 0;background-color:#f5f5f5 !important;">
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-12">
+        <div class="heading-block nobottomborder topmargin-sm nobottommargin">
+          <h3 style="margin: 0px;font-family:'Noto Sans';text-align:center;margin-bottom:30px;">Asia's most visited and trusted crowdfunding platform</h3>
+          <div class="row clearfix" style="text">
+            <div class="col-sm-offset-3 col-sm-3">
+              <ul class="iconlist nobottommargin">
+                <li><i class="icon-ok"></i> 100% Assurance</li>
+                <li><i class="icon-ok"></i> Hard Working</li>
+                <li><i class="icon-ok"></i> Trustworthy</li>
+              </ul>
+            </div>
+            <div class="col-sm-3">
+              <ul class="iconlist nobottommargin">
+                <li><i class="icon-ok"></i> Intelligent</li>
+                <li><i class="icon-ok"></i> Always Curious</li>
+                <li><i class="icon-ok"></i> Perfectionists</li>
+              </ul>
+            </div>
+          </div>
+          <div class="line line-sm"></div>
+        </div>
+        <div class="row clearfix" style="text-align:center;">
+          <div class="col-sm-4">
+            <div>
+              <div class="counter counter-small color"><span data-from="10" data-to="1136" data-refresh-interval="50" data-speed="1000"></span>+</div>
+              <h5 class="color t600 nott notopmargin" style="font-size: 16px;">Happy Customers</h5>
+            </div>
+          </div>
 
-        background-repeat: no-repeat;">
-      <div class="container text-center">
-        <div class="middle">
-          <div class="inner">
+          <div class="col-sm-4">
+            <div>
+              <div class="counter counter-small" style="color: #22c1c3;"><span data-from="10" data-to="145" data-refresh-interval="50" data-speed="700"></span>+</div>
+              <h5 class="t600 nott notopmargin" style="color: #22c1c3; font-size: 16px;">Pets Hosted</h5>
+            </div>
+          </div>
 
-              <!-- <div class="row">
-                <div class="col-md-12">
-                  <h4><strong>SUBSCRIBE</strong></h4>
-                  <p class="mt-15 mb-25">Receive exclusive news and updates from us.</p>
-                </div>
-              </div>
-
-              <form class="" action="{{ url('subscriberstore') }}" method="post">
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-              <div class="row">
-                <div class="col-md-3 col-md-offset-1">
-                  <div class="form-group">
-                    <label class="sr-only" >First Name</label>
-                    <input type="text" class="form-control" placeholder="First Name" name="first_name">
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label class="sr-only" >Last Name</label>
-                    <input type="text" class="form-control" placeholder="Last Name" name="last_name">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="sr-only" >Email address</label>
-                    <input type="email" class="form-control" placeholder="Email address" name="email">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <button type="submit" name="button" class="btn btn-default">SUBSCRIBE</button>
-                </div>
-              </div>
-
-            </form> -->
-
+          <div class="col-sm-4">
+            <div>
+              <div class="counter counter-small" style="color: #BD3F32;"><span data-from="10" data-to="50" data-refresh-interval="85" data-speed="1200"></span>+</div>
+              <h5 class="t600 nott notopmargin" style="color: #BD3F32; font-size: 16px;">Professionals</h5>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-</div>
-
-<div class="banner-img">
-    <img src="{{ asset('assets/img/banners/banner2.jpg') }}" class="img-responsive">
-</div>
-@endforeach
-<!-- ./END BANNER -->
-
-
-
-<!-- BEGIN INSTAGRAM FEED -->
-@if($instagram == 'gagal bray')
-
-@else
-
-<div class="container" style="margin-top:5%;margin-bottom:5%;">
-    <h3 style="text-align:center;margin-bottom:20px;">#IAABABES</h3>
-
-    <div class="col-md-offset-2 col-md-8">
-
-        @foreach($instagram as $key => $insta)
-            @if($key < 6 )
-                <div class="col-xs-4" style="padding-left:5px;padding-right:5px;padding-bottom:10px;">
-                    <a href="{{ $insta->link }}" target="_blank">
-                        <div class="insta-bg" style="width:100%;background:url({{ $insta->images->low_resolution->url }});background-size:cover;background-position:center center;background-repeat:no-repeat;" >
-                        </div>
-                    </a>
-                </div>
-            @endif
-        @endforeach
-
-    </div>
-
-    <style media="screen">
-        .btn-insta{
-            background-color:transparent;
-            border-color:transparent;
-            color:#000;
-            font-weight:600;
-            font-family: 'Lato', sans-serif !important;
-            text-transform: uppercase;
-            white-space: normal;
-        }
-
-        .btn-insta:hover{
-            background-color: #D19E9A;
-            color: #fff;
-            border-color: #D19E9A;
-        }
-    </style>
-
-    <div class="clearfix"></div>
-    <div class="col-md-12" style="text-align:center;margin-top:20px;">
-        <a href="http://instagram.com/{{ $instagram[0]->user->username }}" target="_blank" class="btn btn-primary btn-insta">
-            <i class="fa fa-instagram"></i> TAG US FOR A CHANCE TO BE FEATURED <?php echo "@".$instagram[0]->user->username; ?>
-        </a>
-    </div>
-</div>
-
-@endif
-
-<!-- ./END INSTAGRAM FEED  -->
-
-
-<!-- BEGIN CONTACT INFOMATION -->
-<!-- <section id="main-contact-information">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="form-inline">
-          <div class="form-group">
-            <label><i class="fa fa-map-marker"></i></label>
-            <p class="form-control-static">Lorem Ipsum, 10
-              Jakarta, Indonesia</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="form-inline">
-          <div class="form-group">
-            <label><i class="fa fa-envelope"></i></label>
-            <p class="form-control-static">hello@iamaddicted.com</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="form-inline">
-          <div class="form-group">
-            <label><i class="fa fa-phone"></i></label>
-            <p class="form-control-static">Tel. +62 123 4567</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <ul class="social-media">
-          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-          <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-        </ul>
       </div>
 
     </div>
   </div>
-</section> -->
-<!-- ./END CONTACT INFOMATION  -->
+</section>
 
-<!-- MODAL DETAIL PRODUCT -->
-<div class="modal fade" id="detailprod" role="dialog">
-    <div class="modal-dialog modal-lg" style="background-color:#fff;">
 
-      <!-- Modal content-->
-      <div class="modal-content" style="border-radius:0px;background:url({{ asset('assets/bg-product.png') }});background-repeat:no-repeat;">
-        <div class="modal-header" style="border-bottom:none;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <!-- <h4 class="modal-title">Modal Header</h4> -->
-        </div>
-        <div class="modal-body" id="prodcontent">
+<div class="section nobg notopmargin clearfix" style="margin:0px;padding:0px;">
+  <div class="container clearfix">
 
-        </div>
-      </div>
-
+    <div class="col-md-12" style="margin-bottom:50px;">
+      <h3 style="margin: 0px;font-family:'Noto Sans';text-align:center;">How To Go About It</h3>
+      <p class="text-center" style="color: #777;font-size: 16px;font-family:'Noto Sans'; margin: 0px;font-style:italic;">Decided to raise funds? Pat yourself on the back. Still have doubts? Read these!</p>
     </div>
-</div>
 
-<!-- MODAL ADD TO CART -->
-<div class="modal fade" id="myModal" role="dialog" style="z-index:99999999999;">
-  <div class="modal-dialog" style="background-color:#fff;">
+    <div class="col_one_third">
+      <div class="feature-box fbox-plain">
+        <div class="fbox-icon">
+          <a href="#"><img src="{{ url('template/demos/business/images/icons/24help.svg') }}" alt=""></a>
+        </div>
+        <h3 class="nott t600 ls0">Responsive Layout</h3>
+        <p>Powerful Layout with Responsive functionality that can be adapted to any screen size.</p>
+      </div>
+    </div>
 
-    <!-- Modal content-->
-    <div class="modal-content" style="border-radius:0px;background:url({{ asset('assets/bg-brush.png') }});background-repeat:no-repeat;">
-      <div class="modal-header" style="border-bottom:none;">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">
-            <img src="{{ asset('assets/cart-success.png') }}" alt="Success Add Cart" class="img-responsive" style="margin:auto;height:100px;">
-        </h4>
+    <div class="col_one_third">
+      <div class="feature-box fbox-plain">
+        <div class="fbox-icon">
+          <a href="#"><img src="{{ url('template/demos/business/images/icons/barcode.svg') }}" alt=""></a>
+        </div>
+        <h3 class="nott t600 ls0">Retina Ready Graphics</h3>
+        <p>Looks beautiful &amp; ultra-sharp on Retina Displays with Retina Icons, Fonts &amp; Images.</p>
       </div>
-      <div class="modal-body" style="padding:15px 50px;" id="successadd">
+    </div>
 
+    <div class="col_one_third col_last">
+      <div class="feature-box fbox-plain">
+        <div class="fbox-icon">
+          <a href="#"><img src="{{ url('template/demos/business/images/icons/buy.svg') }}" alt=""></a>
+        </div>
+        <h3 class="nott t600 ls0">Powerful Performance</h3>
+        <p>Optimized code that are completely customizable and deliver unmatched fast performance.</p>
       </div>
-      <div class="modal-footer" style="border-top:none;text-align:center;">
-          <a href="{{ url('products/?category=') }}all&view=20" class="btn btn-default" style="border-radius:5px;padding:10px 30px;background-color:#000;border-color:#000;">Shop More</a>
-          @if(Session::has('memberid'))
-              <a href="{{ url('cart') }}" class="btn btn-default" style="border-radius:5px;padding:10px 30px;">Checkout</a>
-          @else
-              <a href="{{ url('user/login') }}?redirect={{ url('/cart') }}" class="btn btn-default" style="border-radius:5px;padding:10px 30px;">Checkout</a>
-          @endif
-      </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="container" style="text-align:center;">
+      <a href="{{ url('/products?category=all') }}" class="button button-small nomargin">Sign Up For Free</a>
     </div>
 
   </div>
 </div>
+
+<div class="section nomargin clearfix" style="padding:20 0px;margin-top:30px !important;background-color:#f5f5f5;">
+  <h3 class="center">What makes us do, what we do</h3>
+
+  <div class="fslider testimonial testimonial-full noshadow noborder nopadding divcenter" data-animation="fade" data-arrows="false" style="max-width: 700px;">
+    <div class="flexslider">
+      <div class="slider-wrap">
+        <div class="slide">
+          <div class="testi-content">
+            <p>Similique fugit repellendus expedita excepturi iure perferendis provident quia eaque. Repellendus, vero numquam?</p>
+            <div class="testi-meta">
+              Steve Jobs
+              <span>Apple Inc.</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="testi-content">
+            <p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
+            <div class="testi-meta">
+              Collis Ta'eed
+              <span>Envato Inc.</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="testi-content">
+            <p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum!</p>
+            <div class="testi-meta">
+              John Doe
+              <span>XYZ Inc.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section nomargin clearfix" style="padding: 80px 0;margin-top:0px;background-color:#fff;">
+
+  <h3 style="margin: 0px;font-family:'Noto Sans';text-align:center;margin-bottom:50px;">Featured In</h3>
+
+  <div id="oc-clients-full" class="owl-carousel owl-carousel-full image-carousel carousel-widget" data-margin="0" data-nav="false" data-pagi="false" data-loop="true" data-autoplay="3000" data-items-xxs="2" data-items-xs="3" data-items-sm="5" data-items-md="5" data-items-lg="5">
+
+    <div class="oc-item"><a href="#"><img src="{{url('template/demos/business/images/clients/linkedin.svg')}}" style="height: 24px" alt="Brands"></a></div>
+    <div class="oc-item"><a href="#"><img src="{{url('template/demos/business/images/clients/nat-geo.svg')}}" style="height: 24px" alt="Brands"></a></div>
+    <div class="oc-item"><a href="#"><img src="{{url('template/demos/business/images/clients/jetblue.svg')}}" style="height: 24px" alt="Brands"></a></div>
+    <div class="oc-item"><a href="#"><img src="{{url('template/demos/business/images/clients/zillow.svg')}}" style="height: 24px" alt="Brands"></a></div>
+    <div class="oc-item"><a href="#"><img src="{{url('template/demos/business/images/clients/amazon.svg')}}" style="height: 24px" alt="Brands"></a></div>
+
+  </div>
+</div>
+
+<div class="container-fluid text-center fconnect" id="fConnect" style="padding-left: 0px;
+			padding-right: 0px;">
+
+		<div class="col-md-12">
+
+				<div class="col-md-6 col-xs-12" style="padding-left:0px;padding-right:0px;">
+		<div id="connectFb" class="watsappBg">
+				<h2>Click on "Subscribe" to receive stories of people who need nothing more than your voice - a simple share</h2>
+				<p>Add us to your contacts to receive stories every Tuesday &amp; Friday</p>
+				<a href="https://api.whatsapp.com/send?phone=918291379122&amp;text=Count%20me%20in%21%20I%20want%20to%20subscribe%20to%20Ketto%20Voice." target="_blank">
+				<button class="btn btn-lg btn-whatsapp" data-title="home_page">
+				<i class="fa fa-whatsapp custom_whatsaapp_icon"></i>&nbsp;Subscribe to Whatsapp
+				</button>
+				</a>
+			</div>
+		</div>
+
+		<div class="col-md-6 col-xs-12" style="padding-left:0px;padding-right:0px;">
+		<div id="connectFb" class="fbBg">
+				<h2>We post stories of patients who need help to afford lifesaving treatment everyday</h2>
+				<p>Follow us on Facebook to pull them out of the clutches of death</p>
+				<a target="_blank" href="http://www.facebook.com/ketto.org">
+				<button class="btn btn-lg btn-fb" data-title="home_page">
+				<i class="fa fa-facebook fa-inverse"></i>&nbsp;Follow us on Facebook
+				</button>
+				</a>
+			</div>
+		</div>
+
+		</div>
+
+		</div>
 
 @push('js')
 <script type="text/javascript" src="{{ asset('template/web/plugins/OwlCarousel2-2.2.1/dist/owl.carousel.min.js') }}"></script>

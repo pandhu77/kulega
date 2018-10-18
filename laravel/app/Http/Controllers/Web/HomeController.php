@@ -39,7 +39,7 @@ class HomeController extends Controller
         $getcampaign  = DB::table('lk_campaign')->join('lk_campaign_category', 'lk_campaign_category.kateg_id', '=', 'lk_campaign.parent')->where('enable',1)->orderBy('created_at','DESC')->take(12)->get();
         $getinsta   = DB::table('t_module_options')->where('module','instagram')->first();
         $slick    = DB::table('lk_campaign')->where('enable',1)->where('show',1)->orderBy('created_at','DESC')->limit(6)->get();
-        //$getcate    = DB::table('lk_product_category')->where('kateg_enable',1)->where('kateg_show',1)->get();
+        $getcate    = DB::table('lk_product_category')->where('kateg_enable',1)->where('kateg_show',1)->get();
 
         if (empty($getinsta->value)) {
             $instausername = $getinsta->default_value;
@@ -66,9 +66,10 @@ class HomeController extends Controller
             'slider'    => $getslider,
             'products'  => $getproducts,
             'banners'   => $getbanner,
-            'campaign'   => $getcampaign,
+            'campaign'  => $getcampaign,
             'instagram' => $items,
-            'slick'     => $slick
+            'slick'     => $slick,
+            'getcate'   => $getcate
         ]);
     }
 
