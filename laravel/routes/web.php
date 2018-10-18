@@ -126,6 +126,13 @@ Route::group(['middleware' => 'member'], function () {
 // ADMIN START==================================================================
 Route::group(['middleware' => 'admin'], function () {
 
+    Route::get('backend/gallerycampaign/show/{campaignid}','Backend\GcampaignController@listgallery');
+    Route::get('backend/gallerycampaign/create/{campaignid}','Backend\GcampaignController@create');
+    Route::post('backend/gallerycampaign/create/{campaignid}','Backend\GcampaignController@store');
+    Route::get('backend/gallerycampaign/edit/{id}','Backend\GcampaignController@edit');
+    Route::post('backend/gallerycampaign/edit/{id}','Backend\GcampaignController@update');
+    Route::post('backend/gallerycampaign/delete/{id}','Backend\GcampaignController@destroy');
+
     // THEMES
     Route::get('backend/themes-setting','Backend\ThemeController@setting');
     Route::get('backend/themes-setting/active/{id}','Backend\ThemeController@active');

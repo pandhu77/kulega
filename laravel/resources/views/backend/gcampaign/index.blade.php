@@ -1,9 +1,9 @@
 @extends('backend/app')
 @section('content')
-<title>System | Campaign </title>
+<title>System | Gallery Campaign {{ $tcam->name }}</title>
 <div class="page-title">
   <div class="title_left">
-    <h3>Campaign <small>show all campaign</small></h3>
+    <h3>Gallery Campaign <small>show all gallery campaign {{ $tcam->name }}</small></h3>
   </div>
   <!-- <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -21,9 +21,9 @@
 
     <div class="x_panel">
       <div class="x_title">
-        <h2>Master Data <small>Campaign</small></h2>
+        <h2>Master Data <small>Gallery Campaign {{ $tcam->name }}</small></h2>
         <div class="text-right" style="margin-bottom:20px;">
-                    <a href="{{ url('backend/campaign/create') }}" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New</a>
+                    <a href="{{ url('backend/gallerycampaign/create/'.$campaignid) }}" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New</a>
                 </div>
         <div class="clearfix"></div>
 
@@ -68,7 +68,6 @@
               <th width="10px">#</th>
               <th>Name</th>
               <th width="5%">Image</th>
-              <th>Url</th>
               <th width="">Enable</th>
               <th width="">Show</th>
               <th width="">Action</th>
@@ -76,22 +75,18 @@
           </thead>
 
           <tbody>
-            @foreach($kateg as $data)
+            @foreach($row as $data)
               <tr>
                 <td data-label="#">{{$data->id}}</td>
                 <td data-label="name">{{$data->name}}</td>
                 <td data-label="Image"><img src="{{asset($data->image)}}"class="img-responsive"></td>
-                <td data-label="Url">{{$data->url}}</td>
                 <td data-label="Enable">@if($data->enable ==1)<span class="label label-primary">Enable</span> @else <span class="label label-warning">Disable</span> @endif</td>
                 <td data-label="Show">@if($data->show ==1)<span class="label label-primary">Showed</span> @else <span class="label label-warning">Unshowed</span> @endif</td>
                 <td data-label="Action">
-                  <div  class="btn-group">
-                    <form id="{{ $data->id }}" action="{{ url('backend/campaign/'.$data->id)}}" method="post">
-                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      <input type="hidden" name="_method" value="DELETE">
-                      <a href="{{ url('backend/campaign/'.$data->id.'/edit')}}" title="View This Campaign" data-toggle="tooltip" class="btn btn-sm btn-primary" data-toggle="tooltip"><span class="fa fa-edit" aria-hidden="true"></span></a>
-                      <a href="{{ url('backend/gallerycampaign/show/'.$data->id.'/')}}" title="View This Gallery Campaign" data-toggle="tooltip" class="btn btn-sm btn-info" data-toggle="tooltip"><span class="fa fa-camera-retro" aria-hidden="true"></span></a>
-                      <button type="button"  title="Delete This Campaign" data-toggle="tooltip" class="btn btn-danger btn-sm" data-toggle="tooltip" onclick="checkdelete({{$data->id}})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                  <div  class="btn-group" data-id="{{ $data->id }}">
+                      <a href="{{ url('backend/gallerycampaign/edit/'.$data->id)}}" title="View This Photo" data-toggle="tooltip" class="btn btn-sm btn-primary" data-toggle="tooltip"><span class="fa fa-edit" aria-hidden="true"></span></a>
+
+                      <button title="Delete This Photo" data-toggle="tooltip" class="btn btn-sm btn-danger btnDelete" data-toggle="tooltip"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                     </form>
                   </div>
                 </td>
@@ -102,31 +97,44 @@
       </div>
     </div>
   </div>
-  <script>
-  function checkdelete(id){
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.btnDelete').click(function(e){
+        e.preventDefault();
+        var self = this;
+        var _id = $(self).parent().attr('data-id');
 
-    swal({
-      title: "Are you sure?",
-      text: "",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#DD6B55",
-      confirmButtonText: "Confirm",
-      cancelButtonText: "Cancel",
-      closeOnConfirm: false,
-      closeOnCancel: false
-      },
-      function(isConfirm){
-      if (isConfirm) {
-
-        $('#'+id).submit();
-
-        swal("Deleted!", "Your imaginary file has been deleted.", "success");
-      } else {
-        swal("Cancelled", "", "error");
-      }
-      });
-  }
-  </script>
+        swal({
+          title: "Are you sure?",
+          text: "",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Confirm",
+          cancelButtonText: "Cancel",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },function(isConfirm){
+          if (isConfirm) 
+          {
+            $.ajax({
+                url : "{{ url('/backend/gallerycampaign/delete/'.$campaignid) }}",
+                method : "POST",
+                data : { id : _id,_token : "{{ csrf_token() }}" }
+            }).success(function(response){
+                if("OK" === response.Result)
+                {
+                    location.href = "{{ url('/backend/gallerycampaign/show/'.$campaignid) }}";
+                }
+                else
+                {
+                    swal("Oooops",'Something went wrong.','error');
+                }
+            });     
+          }
+        });
+    });
+});
+</script>
 
     @endsection

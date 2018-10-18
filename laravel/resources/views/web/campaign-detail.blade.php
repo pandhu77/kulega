@@ -26,7 +26,7 @@
         color: #fff;
         padding: 40px 10px 10px 10px;
         width: 100%;
-        z-index: 1000;
+        z-index: 1;
         left: 0;
         background: -moz-linear-gradient(top, rgba(0,0,0,0) 0, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
         background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
@@ -114,6 +114,56 @@
         background-color: #018c8b !important;
     }
 
+    .btn-floating .btn-contribute h3 {
+        margin: 0px;
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn-floatingx .btn-contribute h3 {
+        margin: 0px;
+        color: #fff;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .content-right-section .btn-floating .btn-contribute {
+        text-transform: uppercase;
+        box-shadow: 0 2px 10px 0 #018c8b;
+        -moz-box-shadow: 0 2px 10px 0 #018c8b;
+        -webkit-box-shadow: 0 2px 10px 0 #018c8b;
+        -ms-box-shadow: 0 2px 10px 0 #018c8b;
+        border-radius: 5px;
+        background: #0098ff !important;
+        color: #ffffff !important;
+        border: 0px;
+        padding: 0px;
+        width: 100%;
+    }
+
+    .content-right-section .btn-floating .btn-contribute:hover {
+        background-color: #01548c !important;
+    }
+
+    .content-right-section .btn-floatingx .btn-contribute {
+        text-transform: uppercase;
+        box-shadow: 0 2px 10px 0 #018c8b;
+        -moz-box-shadow: 0 2px 10px 0 #018c8b;
+        -webkit-box-shadow: 0 2px 10px 0 #018c8b;
+        -ms-box-shadow: 0 2px 10px 0 #018c8b;
+        border-radius: 5px;
+        background: #0fd3cd !important;
+        color: #ffffff !important;
+        border: 0px;
+        padding: 0px;
+        width: 100%;
+    }
+
+    .content-right-section .btn-floatingx .btn-contribute:hover {
+        background-color: #018c8b !important;
+    }
+
     p.contribute-button h3 {
         margin: 0px;
         color: #fff;
@@ -154,10 +204,35 @@
     .backers {
         padding: 0;
     }
+
+    .kt-campaign-details .btn-floating {
+        position: fixed;
+        width: 50%;
+        z-index: 100;
+        background: #FFF;
+        bottom: 0;
+        padding: 10px;
+        left: 0;
+        z-index: 115;
+        margin-bottom: 0;
+        border-top: 1px solid #eee; 
+    }
+    .kt-campaign-details .btn-floatingx {
+        position: fixed;
+        width: 50%;
+        z-index: 100;
+        background: #FFF;
+        bottom: 0;
+        padding: 10px;
+        right: 0;
+        z-index: 115;
+        margin-bottom: 0;
+        border-top: 1px solid #eee;
+    }
 </style>
 @endpush
 
-<section id="content" style="background: #eee;">
+<section id="content" style="background: rgb(255,255,255);background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(238,238,238,1) 100%);">
 
     <div class="content-wrap" style="padding-top:0px;">
 
@@ -171,7 +246,6 @@
                 
                 <div class="col-md-8 col-sm-8 content-left-section">
                     
-                    <div class="col-md-12 col-sm-12">
                         <div class="kulega">
                             <div class="image">
                                 <img src="{{ url($campaign->image) }}" class="img-responsive">
@@ -187,9 +261,6 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-12 col-sm-12">
                         <div class="kulega">
                             <div class="tab-content">
                                 <div id="home" class="tab-pane fade in active">
@@ -205,16 +276,37 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
 
                 <div class="col-md-4 col-sm-4 content-right-section kt-campaign-details campaign-details-ab-uppersection main-actions clearfix">
                     <div class="top-donor-section">
                         <div class="clearfix main-actions">
-                            <p class="hidden-xs contribute-button">
+                            <p class="hidden-xs contribute-button col-md-12" style="padding: 0;">
                                 <button class="btn btn-lg btn-info text-center col-md-12 btn-contribute" id="donate" href="javascript:void(0);">
                                     <h3>
                                         <i class="fa fa-heart customHeart"></i> Donate Now
+                                    </h3>
+                                </button>
+                            </p>
+                            <p class="hidden-xs contribute-button col-md-12" style="padding: 0;margin-top: 15px !important;">
+                                <button class="btn btn-lg btn-primary text-center col-md-12" onclick="location.href='{{ url('/products/') }}';" style="padding: 0px;">
+                                    <h3 style="font-size: 22px;font-family: unset;">
+                                        <i class="fa fa-shopping-cart customHeart"></i> Shop Now
+                                    </h3>
+                                </button>
+                            </p>
+
+                            <p class="col-md-12 btn-floating visible-xs">
+                                <button class="btn btn-lg btn-info btn-contribute text-center" href="javascript:void(0);"  data-version="A" onclick="location.href='{{ url('/products/') }}';">
+                                    <h3>
+                                        <i class="fa fa-shopping-cart customHeart"></i> Shop Now
+                                    </h3>
+                                </button>
+                            </p>
+                            <p class="col-md-12 btn-floatingx visible-xs">
+                                <button class="btn btn-lg btn-info btn-contribute text-center" href="javascript:void(0);" data-version="A">
+                                    <h3>
+                                        <i class="fa fa-heart customHeart"></i> Donate Now 
                                     </h3>
                                 </button>
                             </p>

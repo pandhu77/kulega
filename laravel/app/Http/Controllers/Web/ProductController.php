@@ -14,7 +14,12 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
+
     public function index(){
+        $auth = Session::get('idcampaign');
+        if(!$auth){
+            return Redirect()->to('/');
+        }
 
         $search         = Input::get('search');
         $category       = Input::get('category');
@@ -72,6 +77,10 @@ class ProductController extends Controller
     }
 
     public function detail($url){
+        $auth = Session::get('idcampaign');
+        if(!$auth){
+            return Redirect()->to('/');
+        }
 
         Session::forget('orderid1');
         Session::forget('voucher_code');
@@ -113,6 +122,11 @@ class ProductController extends Controller
     }
 
     public function getproduct(){
+        $auth = Session::get('idcampaign');
+        if(!$auth){
+            return Redirect()->to('/');
+        }
+        
         $idprod     = $_POST['idprod'];
         $products   = DB::table('ms_products')->where('prod_id',$idprod)->first();
 
