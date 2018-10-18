@@ -35,8 +35,8 @@
 }
 
 .widget-container .widget-details .widget-mid {
-    min-height: 245px;
-    max-height: 245px;
+    min-height: 325px;
+    max-height: 325px;
     position: relative;
 }
 
@@ -137,7 +137,7 @@
 
 .widget-container .small-badge .label-large.arrowed-right:after, .widget-container .small-badge .label-large.arrowed-in-right:after {
     right: -16px;
-    border-width: 10px 8px;
+    border-width: 12px 8px;
 }
 
 .widget-container .widget-details .amt-raised .fa {

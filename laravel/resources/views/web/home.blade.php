@@ -151,6 +151,13 @@
         content: "Collapse All";
     }
 
+    .campaign-profile img{
+      width: 30px;
+      height: 30px;
+      border-radius: 50px;
+      display: inline;
+    }
+
     #stock-notif{
         margin-top:42px;
         padding-left:0px;
@@ -229,8 +236,13 @@
             <div class="widget-mid">
               <h5 id="campaignTitle"><a href="{{ url('/campaign/'.$campaign->kateg_url.'/'.$campaign->url) }}" tabindex="0">{{ $campaign->name }}</a></h5>
 
-              <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>
+              <div class="campaign-profile">
+                <img src="{{ url($campaign->image) }}" class="img-responsive">
+                <span>by Creator</span>
+              </div>
 
+              <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>
+              
               <div class="widget-footter">
                   <div class="amt-raised clearfix">
                       <span class="pull-left"><span style="font-size: 18px;font-weight: bold;">Rp</span> <span class="campaignAmountRaised"><?php echo number_format($campaign->target, 2); ?></span></span>
