@@ -187,7 +187,7 @@
     }
 
     .banner{
-        min-height: 300px;
+        height: 150px;
     }
 
     .section-title .col-sm-3{
@@ -197,6 +197,13 @@
     .product-image img{
         height:350px;
         object-fit:scale-down;
+    }
+
+    .campaign-profile img{
+      width: 30px;
+      height: 30px;
+      border-radius: 50px;
+      display: inline;
     }
 
     @media(max-width:425px){
@@ -231,12 +238,10 @@
 
 <!-- BEGIN BANNER -->
 @foreach($banners as $banner)
-<section class="banner" style="background:url('{{ asset($banner->image) }}');">
+<section class="banner" style="background:url('https://d1vdjc70h9nzd9.cloudfront.net/images/browse-header-img.jpg');">
     <div class="wrap-outer">
-        <h1 id="banner-text">
-            <?= ucwords(str_replace('-',' ',$category)); ?>
-        </h1>
-        <!-- <span>#iamaddicted{{ $category }}</span> -->
+      <h3 style="margin: 0px;font-family:'Noto Sans';color:#fff;">Browse Fundraisers</h3>
+      <p class="text-center" style="color: #fff;font-size: 16px;font-family:'Noto Sans'; margin: 0px;">The cause you believe in are all in here.</p>
     </div>
 </section>
 @endforeach
@@ -244,7 +249,7 @@
 
 <section id="content" style="background: #eee;">
 
-  <div class="content-wrap">
+  <div class="content-wrap" style="padding-top:15px !important;">
 
     <div class="container clearfix">
 
@@ -292,6 +297,11 @@
                     <div class="widget-mid">
                       <div class="product-title">
                         <h5 id="campaignTitle"><a href="{{ url('/campaign/'.$campaign->url) }}<?php if(isset($_GET['category'])){echo "?category=".$_GET['category'];} ?>" tabindex="0">{{ $campaign->name }}</a></h5>
+                      </div>
+
+                      <div class="campaign-profile">
+                        <img src="{{ url($campaign->image) }}" class="img-responsive">
+                        <span>by Creator</span>
                       </div>
 
                       <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>

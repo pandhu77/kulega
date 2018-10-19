@@ -205,7 +205,7 @@
 .widget-container .widget-details .campaign-desc {
     color: #222222;
     margin-top: 15px;
-    max-height: 60px;
+    /* max-height: 60px; */
     overflow: hidden;
     font-size: 13px;
     line-height: 21px;
