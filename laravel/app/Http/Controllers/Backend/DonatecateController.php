@@ -11,7 +11,7 @@ use Redirect;
 use DateTime;
 use Helper;
 use Auth;
-class GcampaignController extends Controller
+class DonatecateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,29 +29,18 @@ class GcampaignController extends Controller
     }
 
     public function index(){
-    	return redirect()->to('backend/campaign')->with('error','Please select campaign!');
+    	return redirect()->to('backend/donatecate/show');
     }
 
-    public function listgallery($campaignid){
-    	$check=DB::table('lk_campaign')->where('id', $campaignid)->get();
-    	if(count($check) > 0){
-    		$tcam=DB::table('lk_campaign')->where('id', $campaignid)->first();
-    		$row = \App\Gallerycampaign::where('campaignid', $campaignid)->get();
-	    	return view('backend.gcampaign.index',['row'=>$row, 'campaignid'=>$campaignid, 'tcam'=>$tcam]);
-	    } else {
-	    	return redirect()->to('backend/campaign')->with('error','Please select campaign!');
-	    }
-    }
-
-    public function create($campaignid)
+    public function show()
     {
-    	$check=DB::table('lk_campaign')->where('id', $campaignid)->get();
-    	if(count($check) > 0){
-    		$tcam=DB::table('lk_campaign')->where('id', $campaignid)->first();
-        	return view('backend.gcampaign.create',compact('campaignid','tcam'));
-        } else {
-	    	return redirect()->to('backend/campaign')->with('error','Please select campaign!');
-	    }
+        $row = \App\Donatecate::get();
+        return view('backend.donatecate.index',compact('row'));
+    }
+
+    public function create()
+    {
+        return view('backend.donatecate.create');
     }
 
     public function store(Request $request)
@@ -59,7 +48,7 @@ class GcampaignController extends Controller
         # code...
         // validate the info, create rules for the inputs
         $rules = array(
-        	'name' => 'required|unique:lk_gallery_campaign|max:255',
+        	'name' => 'required|unique:lk_donate_cate|max:255',
         );
         // run the validation rules on the inputs from the form
         $validator = Validator::make(Input::all(), $rules);
@@ -75,37 +64,27 @@ class GcampaignController extends Controller
                 $enable=0;
             }
 
-            $nilai=strlen(url(''));
-            $len=$nilai+1;
-            $gcampaign = new \App\Gallerycampaign;
-            $gcampaign->name = $request->get('name');
-            $gcampaign->image = substr($request->get('image'),$len);
-            $gcampaign->campaignid = $request->get('campaignid');
-            $gcampaign->enable = $enable;
-            $gcampaign->show = $request->get('show');
-            $gcampaign->created_at = new DateTime();
-            $insert = $gcampaign->save();
+            $donatecate = new \App\Donatecate;
+            $donatecate->name = $request->get('name');
+            $donatecate->enable = $enable;
+            $donatecate->show = $request->get('show');
+            $donatecate->created_at = new DateTime();
+            $insert = $donatecate->save();
             if($insert){
-                return redirect()->to('backend/gallerycampaign/show/'.$request->get('campaignid'))->with('success-create','Gallery has been saved');
+                return redirect()->to('backend/donatecate/show/')->with('success-create','Category has been saved');
             }else{
                 return Redirect()->back()->with('error','Sorry something is error !');
             }
         }
     }
 
-    public function show()
-    {
-        return redirect()->to('backend/campaign')->with('error','Please select campaign!');
-    }
-
     public function edit($id)
     {
-        $row = \App\Gallerycampaign::find($id);
+        $row = \App\Donatecate::find($id);
         if(!$row){
         	return Redirect()->back()->with('error','Sorry something is error !');
         }
-        $tcam=DB::table('lk_campaign')->where('id', $row->campaignid)->first();
-        return view('backend.gcampaign.edit',compact('row','id','tcam'));
+        return view('backend.donatecate.edit',compact('row','id'));
     }
 
     public function update(Request $request){
@@ -118,10 +97,10 @@ class GcampaignController extends Controller
             return back()->withErrors($validator);
         }         
 
-		$gcampaign = \App\Gallerycampaign::find($request->input('id'));
+		$donatecate = \App\Donatecate::find($request->input('id'));
 
-		if(!$gcampaign){
-			return redirect()->to('backend/campaign')->with('error','Please select campaign!');
+		if(!$donatecate){
+			return redirect()->to('backend/donatecate');
 		}
 
 		if(!empty($request->get('enable'))) {
@@ -130,18 +109,13 @@ class GcampaignController extends Controller
             $enable=0;
         }
 
-		$nilai=strlen(url(''));
-        $len=$nilai+1;
-        
-        $gcampaign->name = $request->get('name');
-        $gcampaign->image = substr($request->get('image'),$len);
-        $gcampaign->enable = $enable;
-        $gcampaign->show = $request->get('show');
-        $gcampaign->updated_at = new DateTime();
-        $update = $gcampaign->save();
+        $donatecate->name = $request->get('name');
+        $donatecate->enable = $enable;
+        $donatecate->show = $request->get('show');
+        $donatecate->updated_at = new DateTime();
+        $update = $donatecate->save();
         if($update){
-        	$get = \App\Gallerycampaign::find($request->input('id'));
-            return redirect()->to('backend/gallerycampaign/show/'.$get->campaignid)->with('success-create','Gallery has been updated');
+            return redirect()->to('backend/donatecate/show/')->with('success-create','Category has been updated');
         }else{
             return Redirect()->back()->with('error','Sorry something is error !');
         }
@@ -149,10 +123,10 @@ class GcampaignController extends Controller
 
     public function destroy(Request $request)
     {
-    	$gcampaign = \App\Gallerycampaign::find($request->input('id'));
-		if($gcampaign)
+    	$dbdelete = \App\Donatecate::find($request->input('id'));
+		if($dbdelete)
 		{
-			$gcampaign->delete();
+			$dbdelete->delete();
 			return [
 				'Result'	=>	"OK",
 				'Message'	=>	"Success"

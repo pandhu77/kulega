@@ -133,6 +133,22 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('backend/gallerycampaign/edit/{id}','Backend\GcampaignController@update');
     Route::post('backend/gallerycampaign/delete/{id}','Backend\GcampaignController@destroy');
 
+    Route::get('backend/donatecate/show/','Backend\DonatecateController@show');
+    Route::get('backend/donatecate/create/','Backend\DonatecateController@create');
+    Route::post('backend/donatecate/create/','Backend\DonatecateController@store');
+    Route::get('backend/donatecate/edit/{id}','Backend\DonatecateController@edit');
+    Route::post('backend/donatecate/edit/{id}','Backend\DonatecateController@update');
+    Route::post('backend/donatecate/delete/','Backend\DonatecateController@destroy');
+
+    Route::get('backend/donate/show/','Backend\DonateController@show');
+    Route::get('backend/donate/create/','Backend\DonateController@create');
+    Route::post('backend/donate/create/','Backend\DonateController@store');
+    Route::get('backend/donate/edit/{id}','Backend\DonateController@edit');
+    Route::post('backend/donate/edit/{id}','Backend\DonateController@update');
+    Route::post('backend/donate/delete/','Backend\DonateController@destroy');
+    Route::post('backend/donate/confirmed/','Backend\DonateController@confirmed');
+    Route::post('backend/donate/rejected/','Backend\DonateController@rejected');
+
     // THEMES
     Route::get('backend/themes-setting','Backend\ThemeController@setting');
     Route::get('backend/themes-setting/active/{id}','Backend\ThemeController@active');
