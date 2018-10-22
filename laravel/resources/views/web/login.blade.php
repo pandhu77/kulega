@@ -2,9 +2,11 @@
 @section('title','www.kulega.com')
 @section('content')
 
-@push('css')
-
-@endpush
+<style media="screen">
+  ul.tab-nav.tab-nav2 li.ui-state-active a{
+    background-color: #fcbb56;
+  }
+</style>
 
 <section id="content">
 
