@@ -41,6 +41,40 @@
             <form method="post" action="{{ url('backend/campaign/'.$row->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
               {{ csrf_field() }}
               <input type="hidden" value="PUT" name="_method">
+              <form method="post" action="{{ url('backend/campaign') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+              {{ csrf_field() }}
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label" style="">Campaign Buyyer</label>
+                <div class="col-sm-9" style="">
+                    <select class="selectpicker input-flat" id="selectBuyyer" data-live-search="true" name="buyyer" required>
+                        <option value="" selected disabled>Select One</option>
+                       @foreach($buyyer as $buyyers)
+                          <option value="{{$buyyers->id}}" data-tokens="" <?php if($row->buyyerid==$buyyers->id){echo 'selected="selected"';}?>>{{$buyyers->name}}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('parent'))
+                    <div style="color:red;">
+                        {{ $errors->first('parent') }}
+                    </div>
+                    @endif
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-3 control-label" style="">Category</label>
+                <div class="col-sm-9" style="">
+                    <select class="selectpicker input-flat" data-live-search="true" name="parent" required>
+                        <option value="" selected disabled>Select One</option>
+                       @foreach($kateg as $kategs)
+                          <option value="{{$kategs->kateg_id}}" <?php if($row->parent==$kategs->kateg_id){echo 'selected="selected"';}?> data-tokens="">{{$kategs->kateg_name}}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('parent'))
+                    <div style="color:red;">
+                        {{ $errors->first('parent') }}
+                    </div>
+                    @endif
+                </div>
+              </div>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Status <span class="required">*</span>
                 </label>
@@ -70,12 +104,12 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label" style="">Category</label>
+                <label for="inputEmail3" class="col-sm-3 control-label" style="">Member</label>
                 <div class="col-sm-9" style="">
-                    <select class="selectpicker input-flat" data-live-search="true" name="parent" required>
+                    <select class="selectpicker input-flat" data-live-search="true" id="idmember" name="member" required>
                         <option value="" selected disabled>Select One</option>
-                       @foreach($kateg as $kategs)
-                          <option value="{{$kategs->kateg_id}}" <?php if($row->parent==$kategs->kateg_id){echo 'selected="selected"';}?> data-tokens="">{{$kategs->kateg_name}}</option>
+                        @foreach($member as $members)
+                          <option value="{{$members->member_id}}" <?php if($row->memberid==$members->member_id){echo 'selected="selected"';}?> data-tokens="">{{$members->member_username}} {{$members->member_email}}</option>
                         @endforeach
                     </select>
                     @if ($errors->has('parent'))
@@ -126,4 +160,29 @@
       </div>
     </div>
   </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#selectBuyyer').change(function(){
+      var _id = $(this).val();
+      $.ajax({
+          url : "{{ url('/backend/campaign/getbuyyer/') }}",
+          method : "POST",
+          data : { id : _id,_token : "{{ csrf_token() }}" }
+      }).success(function(response){
+          if("OK" === response.Result)
+          {
+              $('#title').val(response.Title);
+              $('#title').keyup();
+              $('#idtarget').val(response.Target);
+              $('#iddesc').val(response.Desc);
+          }
+          else
+          {
+              swal("Oooops",'Something went wrong.','error');
+          }
+      });
+    });
+});
+</script>
 @endsection

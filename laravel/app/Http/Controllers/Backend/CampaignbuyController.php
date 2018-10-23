@@ -11,7 +11,7 @@ use Redirect;
 use DateTime;
 use Helper;
 use Auth;
-class DonateController extends Controller
+class CampaignbuyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,19 +29,19 @@ class DonateController extends Controller
     }
 
     public function index(){
-    	return redirect()->to('backend/donate/show');
+    	return redirect()->to('backend/campaignbuy/show');
     }
 
     public function show()
     {
-        $row = \App\Donate::get();
-        return view('backend.donate.index',compact('row'));
+        $row = \App\Campaignbuy::get();
+        return view('backend.campaignbuy.index',compact('row'));
     }
 
     public function create()
     {
-        $kateg = \App\Donatecate::get();
-        return view('backend.donate.create',compact('kateg'));
+        $member = DB::table('ms_members')->get();
+        return view('backend.campaignbuy.create',compact('member'));
     }
 
     public function store(Request $request)
@@ -49,7 +49,7 @@ class DonateController extends Controller
         # code...
         // validate the info, create rules for the inputs
         $rules = array(
-        	'name' => 'required|unique:lk_donate|max:255',
+        	'name' => 'required|unique:lk_campaign_buyyer|max:255',
         );
         // run the validation rules on the inputs from the form
         $validator = Validator::make(Input::all(), $rules);
@@ -61,17 +61,31 @@ class DonateController extends Controller
         } else {
             $nilai=strlen(url(''));
             $len=$nilai+1;
+            $campaignbuy = new \App\Campaignbuy;
 
-            $donate             = new \App\Donate;
-            $donate->name       = $request->get('name');
-            $donate->status     = 0;
-            $donate->parent     = $request->get('parent');
-            $donate->image      = substr($request->get('image'),$len);
-            $donate->desc       = $request->get('desc');
-            $donate->created_at = new DateTime();
-            $insert = $donate->save();
+            if($request->file('myPdf')){
+                $destination = base_path() . '\..\public\docs';
+
+                $file = $request->file('myPdf');
+                $ext = $file->getClientOriginalName();
+                $filename = str_random(8).'.'.$ext;
+                $parts = explode( '.' , $file->getClientOriginalName() );
+                
+                $file->move($destination,$filename);
+            } else {
+                return Redirect()->back()->with('error','File PDF is required.');
+            }
+
+            $campaignbuy->name       = $request->get('name');
+            $campaignbuy->status     = 0;
+            $campaignbuy->donation   = $request->get('target');
+            $campaignbuy->memberid   = $request->get('member');
+            $campaignbuy->pdf        = $filename;
+            $campaignbuy->desc       = $request->get('desc');
+            $campaignbuy->created_at      = new DateTime();
+            $insert = $campaignbuy->save();
             if($insert){
-                return redirect()->to('backend/donate/show/')->with('success-create','Category has been saved');
+                return redirect()->to('backend/campaignbuy/show/')->with('success-create','Category has been saved');
             }else{
                 return Redirect()->back()->with('error','Sorry something is error !');
             }
@@ -80,12 +94,12 @@ class DonateController extends Controller
 
     public function edit($id)
     {
-        $row = \App\Donate::find($id);
+        $row = \App\Campaignbuy::find($id);
         if(!$row){
         	return Redirect()->back()->with('error','Sorry something is error !');
         }
-        $kateg = \App\Donatecate::get();
-        return view('backend.donate.edit',compact('row','id','kateg'));
+        $member = DB::table('ms_members')->get();
+        return view('backend.campaignbuy.edit',compact('row','id','member'));
     }
 
     public function update(Request $request){
@@ -98,30 +112,43 @@ class DonateController extends Controller
             return back()->withErrors($validator);
         }         
 
-		$donate = \App\Donate::find($request->input('id'));
+		$campaignbuy = \App\Campaignbuy::find($request->input('id'));
 
-		if(!$donate){
-			return redirect()->to('backend/donate/show/');
+		if(!$campaignbuy){
+			return redirect()->to('backend/campaignbuy/show/');
 		}
 
         $nilai=strlen(url(''));
         $len=$nilai+1;
 
-        $donate->name = $request->get('name');
-        $donate->parent     = $request->get('parent');
-        $donate->image      = substr($request->get('image'),$len);
-        $donate->desc       = $request->get('desc');
-        $donate->updated_at = new DateTime();
-        $update = $donate->save();
+        if($request->file('myPdf')){
+            $destination = base_path() . '\..\public\docs';
+
+            $file = $request->file('myPdf');
+            $ext = $file->getClientOriginalName();
+            $filename = str_random(8).'.'.$ext;
+            $parts = explode( '.' , $file->getClientOriginalName() );
+            
+            $file->move($destination,$filename);
+
+            $campaignbuy->pdf = $filename;
+        }
+
+        $campaignbuy->name       = $request->get('name');
+        $campaignbuy->donation   = $request->get('target');
+        $campaignbuy->memberid   = $request->get('member');
+        $campaignbuy->desc       = $request->get('desc');
+        $campaignbuy->updated_at = new DateTime();
+        $update = $campaignbuy->save();
         if($update){
-            return redirect()->to('backend/donate/show/')->with('success-create','Category has been updated');
+            return redirect()->to('backend/campaignbuy/show/')->with('success-create','Category has been updated');
         }else{
             return Redirect()->back()->with('error','Sorry something is error !');
         }
     }
 
     public function confirmed(Request $request){
-        $donate = \App\Donate::find($request->input('id'));
+        $donate = \App\Campaignbuy::find($request->input('id'));
         if($donate)
         {
             $donate->status = 1;
@@ -141,7 +168,7 @@ class DonateController extends Controller
     }
 
     public function rejected(Request $request){
-        $donate = \App\Donate::find($request->input('id'));
+        $donate = \App\Campaignbuy::find($request->input('id'));
         if($donate)
         {
             $donate->status = 2;
@@ -162,7 +189,7 @@ class DonateController extends Controller
 
     public function destroy(Request $request)
     {
-    	$dbdelete = \App\Donate::find($request->input('id'));
+    	$dbdelete = \App\Campaignbuy::find($request->input('id'));
 		if($dbdelete)
 		{
 			$dbdelete->delete();

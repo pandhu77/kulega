@@ -37,6 +37,29 @@ class CampaignController extends Controller
       }
     }
 
+    public function getbuyyer(Request $request){
+        $id = $request->get('id');
+        if( !empty($id) ){
+            $ckateg = DB::table('lk_campaign_buyyer')->where('id', $id)->where('status', '1')->count();
+            if($ckateg != 0){
+              $kateg = DB::table('lk_campaign_buyyer')->where('id', $id)->where('status', '1')->first();
+              $return = array(
+                'Result' => 'OK',
+                'Title' => $kateg->name,
+                'Id' => $kateg->id,
+                'Target' => $kateg->donation,
+                'Desc' => $kateg->desc
+              );
+            } else {
+              $return = array('Result' => "GAGAL");
+            }
+        } else {
+            $return = array('Result' => "GAGAL");
+        }
+
+        return $return;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -47,13 +70,18 @@ class CampaignController extends Controller
       $auth = $this->CheckAuth();
       if($auth == true){
           $kateg=DB::table('lk_campaign_category')->get();
+          $buyyer=DB::table('lk_campaign_buyyer')->where('status', '1')->get();
+          $member = DB::table('ms_members')->get();
           return view('backend.campaign.create',[
-            'kateg'=>$kateg
+            'kateg'=>$kateg,
+            'buyyer'=>$buyyer,
+            'member'=>$member
           ]);
       }else{
         return Redirect::back()->withErrors(['Sorry, No Access']);
       }
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -89,6 +117,8 @@ class CampaignController extends Controller
                   $len=$nilai+1;
                   $image        =substr(Input::get('image'),$len);
                   $name         =Input::get('name');
+                  $buyyer       =Input::get('buyyer');
+                  $member       =Input::get('member');
                   $parent       =Input::get('parent');
                   $target       =Input::get('target');
                   $desc         =Input::get('desc');
@@ -102,6 +132,8 @@ class CampaignController extends Controller
                     'show'       => Input::get('show'),
                     'enable'     => $status,
                     'target'     => $target,
+                    'buyyerid'   => $buyyer,
+                    'memberid'   => $member,
                     'parent'     => $parent,
                     'desc'       => $desc,
                     'image'      => $image,

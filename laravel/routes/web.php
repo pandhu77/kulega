@@ -149,6 +149,24 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('backend/donate/confirmed/','Backend\DonateController@confirmed');
     Route::post('backend/donate/rejected/','Backend\DonateController@rejected');
 
+    Route::get('backend/campaignbuy/show/','Backend\CampaignbuyController@show');
+    Route::get('backend/campaignbuy/create/','Backend\CampaignbuyController@create');
+    Route::post('backend/campaignbuy/create/','Backend\CampaignbuyController@store');
+    Route::get('backend/campaignbuy/edit/{id}','Backend\CampaignbuyController@edit');
+    Route::post('backend/campaignbuy/edit/{id}','Backend\CampaignbuyController@update');
+    Route::post('backend/campaignbuy/delete/','Backend\CampaignbuyController@destroy');
+    Route::post('backend/campaignbuy/confirmed/','Backend\CampaignbuyController@confirmed');
+    Route::post('backend/campaignbuy/rejected/','Backend\CampaignbuyController@rejected');
+
+    Route::post('backend/campaign/getbuyyer/','Backend\CampaignController@getbuyyer');
+
+    Route::get('backend/gallerycampaignbuy/show/{campaignid}','Backend\GcampaignbuyController@listgallery');
+    Route::get('backend/gallerycampaignbuy/create/{campaignid}','Backend\GcampaignbuyController@create');
+    Route::post('backend/gallerycampaignbuy/create/{campaignid}','Backend\GcampaignbuyController@store');
+    Route::get('backend/gallerycampaignbuy/edit/{id}','Backend\GcampaignbuyController@edit');
+    Route::post('backend/gallerycampaignbuy/edit/{id}','Backend\GcampaignbuyController@update');
+    Route::post('backend/gallerycampaignbuy/delete/{id}','Backend\GcampaignbuyController@destroy');
+
     // THEMES
     Route::get('backend/themes-setting','Backend\ThemeController@setting');
     Route::get('backend/themes-setting/active/{id}','Backend\ThemeController@active');

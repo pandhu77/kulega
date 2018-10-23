@@ -1,9 +1,9 @@
 @extends('backend/app')
 @section('content')
-<title>System | Gallery Campaign {{ $tcam->name }}</title>
+<title>System | Gallery Campaign Buyyer {{ $tcam->name }}</title>
 <div class="page-title">
   <div class="title_left">
-    <h3>Gallery Campaign <br><small>show all gallery campaign {{ $tcam->name }}</small></h3>
+    <h3>Gallery Campaign Buyyer <br><small>show all gallery campaign buyyer {{ $tcam->name }}</small></h3>
   </div>
   <!-- <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -21,9 +21,9 @@
 
     <div class="x_panel">
       <div class="x_title">
-        <h2>Master Data <br><small>Gallery Campaign {{ $tcam->name }}</small></h2>
+        <h2>Master Data <br><small style="margin: 0px;">Gallery Campaign Buyyer {{ $tcam->name }}</small></h2>
         <div class="text-right" style="margin-bottom:20px;">
-                    <a href="{{ url('backend/gallerycampaign/create/'.$campaignid) }}" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New</a>
+                    <a href="{{ url('backend/gallerycampaignbuy/create/'.$campaignid) }}" class="btn btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New</a>
                 </div>
         <div class="clearfix"></div>
 
@@ -84,7 +84,7 @@
                 <td data-label="Show">@if($data->show ==1)<span class="label label-primary">Showed</span> @else <span class="label label-warning">Unshowed</span> @endif</td>
                 <td data-label="Action">
                   <div  class="btn-group" data-id="{{ $data->id }}">
-                      <a href="{{ url('backend/gallerycampaign/edit/'.$data->id)}}" title="Update This Photo" data-toggle="tooltip" class="btn btn-sm btn-primary" data-toggle="tooltip"><span class="fa fa-edit" aria-hidden="true"></span></a>
+                      <a href="{{ url('backend/gallerycampaignbuy/edit/'.$data->id)}}" title="Update This Photo" data-toggle="tooltip" class="btn btn-sm btn-primary" data-toggle="tooltip"><span class="fa fa-edit" aria-hidden="true"></span></a>
 
                       <button title="Delete This Photo" data-toggle="tooltip" class="btn btn-sm btn-danger btnDelete" data-toggle="tooltip"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                     </form>
@@ -118,13 +118,13 @@ $(document).ready(function(){
           if (isConfirm) 
           {
             $.ajax({
-                url : "{{ url('/backend/gallerycampaign/delete/'.$campaignid) }}",
+                url : "{{ url('/backend/gallerycampaignbuy/delete/'.$campaignid) }}",
                 method : "POST",
                 data : { id : _id,_token : "{{ csrf_token() }}" }
             }).success(function(response){
                 if("OK" === response.Result)
                 {
-                    location.href = "{{ url('/backend/gallerycampaign/show/'.$campaignid) }}";
+                    location.href = "{{ url('/backend/gallerycampaignbuy/show/'.$campaignid) }}";
                 }
                 else
                 {
