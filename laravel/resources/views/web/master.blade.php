@@ -97,7 +97,7 @@
 							<!--li><a href="{{ url('/') }}"><div>Home</div></a></li-->
 							<li><a href="{{ url('/campaign') }}"><div>Browse Fundraisers</div></a></li>
 							<li><a href="{{ url('/howitwork') }}"><div>How It Works</div></a></li>
-              <li><a href="{{ url('/gallery') }}"><div>Get us on WhatsApp</div></a></li>
+              <li><a href="{{ url('/voice') }}"><div>Get us on WhatsApp</div></a></li>
 							@if(Session::has('memberid'))
 								<!-- <li><a href="{{ url('user/order/payment-confirmation/1') }}"><div>Confirm Payment</div></a></li> -->
                 <li><a href="{{ url('user/login') }}"><div>Halo, {{ Session::get('membername') }}</div></a></li>

@@ -27,4 +27,8 @@ class AboutController extends Controller
         ]);
     }
 
+    public function voice(){
+      return view('web.voice');
+    }
+
 }

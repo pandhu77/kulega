@@ -30,6 +30,7 @@ Route::get('campaign/{url}','Web\CampaignController@detail');
 // ABOUT
 Route::get('about','Web\AboutController@index');
 Route::get('howitwork','Web\AboutController@howitwork');
+Route::get('voice','Web\AboutController@voice');
 
 // GALLERY
 Route::get('gallery','Web\GalleryController@index');
