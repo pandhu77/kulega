@@ -264,7 +264,7 @@
     </div>
     <section class="regular slider">
       @foreach($campaign as $campaign)
-      <div class="col-md-4 kulega" style="padding: 0px !important; margin-bottom: 20px; background-color: #fff;" onclick="window.location.href='{{ url('/campaign/'.$campaign->kateg_url.'/'.$campaign->url) }}'">
+      <div class="col-md-4 kulega" style="padding: 0px !important; margin-bottom: 20px; background-color: #fff;" onclick="window.location.href='{{ url('/campaign/'.$campaign->url) }}'">
         <div class="widget-container home_trending" style="background-color: #fff;">
           <div class="image">
             <img src="{{ url($campaign->image) }}" class="img-responsive">
@@ -274,11 +274,11 @@
           </p>
           <div class="widget-details">
             <div class="widget-mid">
-              <h5 id="campaignTitle"><a href="{{ url('/campaign/'.$campaign->kateg_url.'/'.$campaign->url) }}" tabindex="0">{{ $campaign->name }}</a></h5>
+              <h5 id="campaignTitle"><a href="{{ url('/campaign/'.$campaign->url) }}" tabindex="0">{{ $campaign->name }}</a></h5>
 
               <div class="campaign-profile">
-                <img src="{{ url($campaign->image) }}" class="img-responsive">
-                <span>by Creator</span>
+                @if(!empty($campaign->member_image))<img src="{{ $campaign->member_image }}" class="img-responsive">@endif
+                <span style="font-size: 14px; font-style: italic; color: #000;">by <span style="color: #00f">{{ $campaign->member_fullname }}</span></span>
               </div>
 
               <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>
@@ -330,15 +330,12 @@ END CATEGORY -->
           <div class="iportfolio">
             <div class="portfolio-image">
               <a href="#">
-                <img src="{{ url($cate->kateg_image) }}" alt="Open Imagination">
+                <img src="{{ url($cate->kateg_icon) }}" alt="Open Imagination">
               </a>
-              <div class="portfolio-overlay">
-                <a href="{{ url($cate->kateg_image) }}" class="left-icon" data-lightbox="image"><i class="icon-line-search"></i></a>
-              </div>
+              <div class="portfolio-overlay"></div>
             </div>
-            <div class="portfolio-desc">
-              <h3><a href="#">{{ $cate->kateg_name }}</a></h3>
-              <span><a href="#">Media</a>, <a href="#">Icons</a></span>
+            <div class="portfolio-desc" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;padding: 0;">
+              <h3 style="text-align: center;padding: 22% 0px;">{{ $cate->kateg_name }}</h3>
             </div>
           </div>
         </div>

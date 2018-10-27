@@ -43,7 +43,7 @@
               <div class="form-group">
                 <label for="inputEmail3" class="col-sm-3 control-label" style="">Campaign Buyyer</label>
                 <div class="col-sm-9" style="">
-                    <select class="selectpicker input-flat" id="selectBuyyer" data-live-search="true" name="buyyer" required>
+                    <select class="selectpicker input-flat" id="selectBuyyer" data-live-search="true" name="buyyer">
                         <option value="" selected disabled>Select One</option>
                        @foreach($buyyer as $buyyers)
                           <option value="{{$buyyers->id}}" data-tokens="">{{$buyyers->name}}</option>

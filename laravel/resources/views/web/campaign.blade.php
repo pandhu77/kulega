@@ -257,7 +257,10 @@
         <div class="col-md-12" style="margin-bottom:20px;text-align:right;">
           Views:
           <select class="" name="view_item" style="width: 120px;height: 40px;padding-left: 10px;" onchange="changeview()">
-              <option value="20" <?php if($view == 20){echo "selected";} ?>>20</option>
+              <option value="9" <?php if($view == 9){echo "selected";} ?>>9</option>
+              <option value="12" <?php if($view == 12){echo "selected";} ?>>12</option>
+              <option value="24" <?php if($view == 24){echo "selected";} ?>>24</option>
+              <option value="36" <?php if($view == 36){echo "selected";} ?>>36</option>
               @if($countall >= 20 && $countall <= 40)
                   <option value="40" <?php if($view == 40){echo "selected";} ?>>40</option>
               @endif
@@ -300,8 +303,8 @@
                       </div>
 
                       <div class="campaign-profile">
-                        <img src="{{ url($campaign->image) }}" class="img-responsive">
-                        <span>by Creator</span>
+                        @if(!empty($campaign->member_image))<img src="{{ $campaign->member_image }}" class="img-responsive">@endif
+                        <span style="font-size: 14px; font-style: italic; color: #000;">by <span style="color: #00f">{{ $campaign->member_fullname }}</span></span>
                       </div>
 
                       <div id="campaignBlurb" class="campaign-desc"><?php echo $campaign->desc; ?></div>
@@ -382,7 +385,7 @@ $(".rating").rating().unbind();
 <script type="text/javascript">
     function changeview(){
         var view = $('[name=view_item]').val();
-        location.href = "{{ url('/products') }}?category={{ $category }}&view="+view;
+        location.href = "{{ url('/campaign') }}?category={{ $category }}&view="+view;
     }
 </script>
 

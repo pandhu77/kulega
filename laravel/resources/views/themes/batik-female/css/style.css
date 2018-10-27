@@ -3773,12 +3773,12 @@ body:not(.device-touch):not(.device-xs):not(.device-xxs) .portfolio-notitle .por
 .portfolio-desc h3 {
 	margin: 0;
 	padding: 0;
-	font-size: 19px;
+	font-size: 16px;
 }
 
-.portfolio-desc h3 a { color: #222; }
+.portfolio-desc h3 { color: #fff; font-family: inherit; cursor: pointer; }
 
-.portfolio-desc h3 a:hover { color: #1ABC9C; }
+.portfolio-desc h3:hover { color: #0ac5ff; }
 
 .portfolio-desc span {
 	display: block;

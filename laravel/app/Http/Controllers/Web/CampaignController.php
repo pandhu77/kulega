@@ -59,14 +59,14 @@ class CampaignController extends Controller
 
         $search         = Input::get('search');
         $category       = Input::get('category');
-        $view           = Input::get('view',20);
+        $view           = Input::get('view',12);
         $searchcategory = DB::table('lk_campaign_category')->where('kateg_url',$category)->first();
         $banners        = DB::table('cms_banner')->where('enable',1)->get();
         $allcategory    = DB::table('lk_campaign_category')->where('kateg_enable',1)->get();
 
         if (isset($search)) {
-          $products = DB::table('lk_campaign')->where('enable',1)->where('name','LIKE','%'.$search.'%')->paginate($view);
-          $countall = DB::table('lk_campaign')->where('enable',1)->where('name','LIKE','%'.$search.'%')->count();
+          $products = DB::table('lk_campaign')->join('ms_members','ms_members.member_id','=','lk_campaign.memberid')->where('enable',1)->where('name','LIKE','%'.$search.'%')->paginate($view);
+          $countall = DB::table('lk_campaign')->join('ms_members','ms_members.member_id','=','lk_campaign.memberid')->where('enable',1)->where('name','LIKE','%'.$search.'%')->count();
 
           return view('web.products',[
             'banners'   => $banners,
@@ -89,12 +89,12 @@ class CampaignController extends Controller
         //     $countall     = DB::table('ms_products')->where('enable',1)->where('category','LIKE','%'.$searchcategory->kateg_id.'%')->count();
         // } else {
         if ($view == 'all') {
-            $products = DB::table('lk_campaign')->join('lk_campaign_category', 'lk_campaign_category.kateg_id', '=', 'lk_campaign.parent')->where('enable',1)->paginate(1000);
+            $products = DB::table('lk_campaign')->join('ms_members','ms_members.member_id','=','lk_campaign.memberid')->join('lk_campaign_category', 'lk_campaign_category.kateg_id', '=', 'lk_campaign.parent')->where('enable',1)->paginate(1000);
         }else {
-            $products = DB::table('lk_campaign')->join('lk_campaign_category', 'lk_campaign_category.kateg_id', '=', 'lk_campaign.parent')->where('enable',1)->paginate($view);
+            $products = DB::table('lk_campaign')->join('ms_members','ms_members.member_id','=','lk_campaign.memberid')->join('lk_campaign_category', 'lk_campaign_category.kateg_id', '=', 'lk_campaign.parent')->where('enable',1)->paginate($view);
         }
 
-        $countall     = DB::table('lk_campaign')->join('lk_campaign_category', 'lk_campaign_category.kateg_id', '=', 'lk_campaign.parent')->where('enable',1)->count();
+        $countall     = DB::table('lk_campaign')->join('ms_members','ms_members.member_id','=','lk_campaign.memberid')->join('lk_campaign_category', 'lk_campaign_category.kateg_id', '=', 'lk_campaign.parent')->where('enable',1)->count();
 
         if (!isset($category) || $category == 'all') {
           $category     = 'all';

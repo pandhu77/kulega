@@ -66,11 +66,18 @@ class DonateController extends Controller
             $donate->name       = $request->get('name');
             $donate->status     = 0;
             $donate->parent     = $request->get('parent');
-            $donate->image      = substr($request->get('image'),$len);
+            $donate->image      = url().substr($request->get('image'),$len);
             $donate->desc       = $request->get('desc');
             $donate->created_at = new DateTime();
             $insert = $donate->save();
             if($insert){
+                $inserth = DB::table('lk_history_donate')->insert([
+                    'memberid'      => '0',
+                    'donateid'      => $donate->id,
+                    'date'          => new DateTime(),
+                    'desc'          => 'Telah menambahkan data baru dengan status <span style="color: #FFD700;">Review</span>',
+                    'created_at'    => new DateTime(),
+                ]);
                 return redirect()->to('backend/donate/show/')->with('success-create','Category has been saved');
             }else{
                 return Redirect()->back()->with('error','Sorry something is error !');
@@ -109,7 +116,7 @@ class DonateController extends Controller
 
         $donate->name = $request->get('name');
         $donate->parent     = $request->get('parent');
-        $donate->image      = substr($request->get('image'),$len);
+        $donate->image      = url().substr($request->get('image'),$len);
         $donate->desc       = $request->get('desc');
         $donate->updated_at = new DateTime();
         $update = $donate->save();
@@ -126,6 +133,16 @@ class DonateController extends Controller
         {
             $donate->status = 1;
             $update = $donate->save();
+
+            $history = DB::table('lk_history_donate')->where('donateid',$request->input('id'))->orderBy('date','DESC')->first();
+
+            $inserth = DB::table('lk_history_donate')->insert([
+                'memberid'      => $history->memberid,
+                'donateid'      => $request->input('id'),
+                'date'          => new DateTime(),
+                'desc'          => 'Data telah berubah dengan status <span style="color: #FFD700;">Approve</span>',
+                'created_at'    => new DateTime(),
+            ]);
             return [
                 'Result'    =>  "OK",
                 'Message'   =>  "Success"
@@ -146,6 +163,17 @@ class DonateController extends Controller
         {
             $donate->status = 2;
             $update = $donate->save();
+
+            $history = DB::table('lk_history_donate')->where('donateid',$request->input('id'))->orderBy('date','DESC')->first();
+
+            $inserth = DB::table('lk_history_donate')->insert([
+                'memberid'      => $history->memberid,
+                'donateid'      => $request->input('id'),
+                'date'          => new DateTime(),
+                'desc'          => 'Data telah berubah dengan status <span style="color: #FF0000;">Reject</span>',
+                'created_at'    => new DateTime(),
+            ]);
+
             return [
                 'Result'    =>  "OK",
                 'Message'   =>  "Success"
@@ -166,6 +194,8 @@ class DonateController extends Controller
 		if($dbdelete)
 		{
 			$dbdelete->delete();
+
+            $history = DB::table('lk_history_donate')->where('donateid',$request->input('id'))->delete();
 			return [
 				'Result'	=>	"OK",
 				'Message'	=>	"Success"

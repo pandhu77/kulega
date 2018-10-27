@@ -193,6 +193,7 @@ class CheckoutController extends Controller{
 
             $insert = DB::table('sum_orders')->insert([
                 'order_id'          => $getid,
+                'campaignid'        => Session::get('idcampaign');
                 'member_id'         => $memberid,
                 'order_date'        => $now,
                 'order_total'       => Session::get('total')+Session::get('paycode'),

@@ -284,6 +284,10 @@
 
                 <div class="list-group">
                     <a href="{{ url('user/profile') }}" class="list-group-item clearfix">Profile <i class="icon-user pull-right"></i></a>
+
+                    <a href="{{ url('user/campaignbuy') }}" class="list-group-item clearfix">Campaign Buyyer <i class="fa fa-paper-plane-o pull-right" aria-hidden="true"></i></a>
+
+                    <a href="{{ url('user/donatebarang') }}" class="list-group-item clearfix">Donate <i class="fa fa-cubes pull-right" aria-hidden="true"></i></a>
                     <!-- <a href="#" class="list-group-item clearfix">Servers <i class="icon-laptop2 pull-right"></i></a>
                     <a href="#" class="list-group-item clearfix">Messages <i class="icon-envelope2 pull-right"></i></a>
                     <a href="#" class="list-group-item clearfix">Billing <i class="icon-credit-cards pull-right"></i></a>

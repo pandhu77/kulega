@@ -175,8 +175,12 @@ class CampaignController extends Controller
           $kateg=DB::table('lk_campaign_category')->get();
           $row=DB::table('lk_campaign')->where('id','=',$id)->first();
           if(count($row)>0){
+            $buyyer=DB::table('lk_campaign_buyyer')->where('status', '1')->get();
+            $member = DB::table('ms_members')->get();
             return view('backend.campaign.edit',[
               'row' =>$row,
+              'member' =>$member,
+              'buyyer' =>$buyyer,
               'kateg' =>$kateg
             ]);
           }else{
@@ -225,6 +229,8 @@ class CampaignController extends Controller
                     $name         =Input::get('name');
                     $parent       =Input::get('parent');
                     $target       =Input::get('target');
+                    $buyyer       =Input::get('buyyer');
+                    $member       =Input::get('member');
                     $desc         =Input::get('desc');
                     $url          =Input::get('url');
                     $now          = new DateTime();
@@ -235,6 +241,8 @@ class CampaignController extends Controller
                       'url'        => $url,
                       'show'       => Input::get('show'),
                       'enable'     => $status,
+                      'buyyerid'   => $buyyer,
+                      'memberid'   => $member,
                       'target'     => $target,
                       'parent'     => $parent,
                       'desc'       => $desc,

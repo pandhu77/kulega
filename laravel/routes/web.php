@@ -92,6 +92,12 @@ Route::group(['middleware' => 'member'], function () {
     Route::get('user/order/cancel/{id}','Web\UserController@ordercancel');
     Route::get('user/order/payment/{id}','Web\UserController@orderpayment');
 
+    Route::get('user/campaignbuy','Web\CampaignbuyController@campaignbuy');
+    Route::post('user/campaignbuy','Web\CampaignbuyController@postcampaignbuy');
+
+    Route::get('user/donatebarang','Web\DonatebarController@index');
+    Route::post('user/donatebarang','Web\DonatebarController@send');
+
     Route::get('user/logout','Web\UserController@dologout');
 
     // ADD ADDRESS

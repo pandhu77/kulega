@@ -27,6 +27,18 @@ class AboutController extends Controller
         ]);
     }
 
+    public function howitwork(){
+        $hiwtitle = DB::table('t_module_options')->where('module','howitwork')->where('code', 'title')->first();
+        $hiwimage = DB::table('t_module_options')->where('module','howitwork')->where('code', 'image')->first();
+        $hiwdesc = DB::table('t_module_options')->where('module','howitwork')->where('code', 'description')->first();
+
+        return view('web.howitwork',[
+            'hiwtitle' => $hiwtitle,
+            'hiwimage' => $hiwimage,
+            'hiwdesc' => $hiwdesc
+        ]);
+    }
+
     public function voice(){
       return view('web.voice');
     }

@@ -294,6 +294,9 @@
                                 <a href="{{ url('') }}/backend/module-opt/aboutus">About Us</a>
                             </li>
                             <li>
+                                <a href="{{ url('') }}/backend/module-opt/howitwork">How It Work</a>
+                            </li>
+                            <li>
                                 <a href="{{ url('') }}/backend/module-opt/mail">Mail</a>
                             </li>
                             <li>

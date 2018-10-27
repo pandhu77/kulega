@@ -79,7 +79,7 @@
                 <td data-label="#">{{$data->id}}</td>
                 <td data-label="name">{{$data->name}}</td>
                 <td data-label="parent"><?php if(!empty($data->Donatecate->name)) echo $data->Donatecate->name; ?></td>
-                <td data-label="Image"><img src="{{asset($data->image)}}" class="img-responsive" width="30"></td>
+                <td data-label="Image"><img src="{{ $data->image }}" class="img-responsive" width="30"></td>
                 <td data-label="Enable">@if($data->status==1)<span class="label label-primary">Confirmed</span>@elseif($data->status==2)<span class="label label-danger">Rejected</span>@else<span class="label label-warning">Review</span>@endif</td>
                 <td data-label="Action">
                   <div  class="btn-group" data-id="{{ $data->id }}">
